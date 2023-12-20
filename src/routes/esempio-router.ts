@@ -1,5 +1,9 @@
-import express from "express";
-import controller from "../controllers/esempio-controller";
+import express, { Router } from "express";
+import * as controller from "../controllers/esempio-controller";
 
-const router = express.Router();
-router.get("/api/nomeapi", controller)
+const router: Router = Router();
+
+router.get("/api/nomeapi", controller.getfunctionName);
+//altri router.get
+
+export default router

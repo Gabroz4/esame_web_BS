@@ -1,7 +1,7 @@
 import {connection} from "../utils/db";
 import { Request, Response } from "express";
 
-export async function functionName(req:Request, res:Response){
+export async function getfunctionName(req:Request, res:Response){
     connection.execute(
         "//query",
         [],
