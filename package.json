@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Gabroz4/esame_web_BS#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.7.2"
   }
 }
