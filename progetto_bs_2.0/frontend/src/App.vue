@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Blog di Tecnologie Web</h1>
+    <h1>CHALET delle Alpi</h1>
   </header>
   <nav>
     <ul>
