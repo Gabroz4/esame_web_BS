@@ -1,9 +1,9 @@
-<script lang="ts">
+<!--<script lang="ts">
 import { defineComponent } from "vue"
 import axios from "axios"
 import { Articolo } from "../types"
 
-export default defineComponent({
+export default defineComponent({*/
   data() {
     return {
       datiArticoli: [] as Articolo[]
@@ -28,7 +28,7 @@ export default defineComponent({
     <h3>{{articolo.titoloarticolo}}</h3>
     <p>{{articolo.nome}} - {{articolo.dataarticolo.slice(0, 10)}}</p>
     <p>{{articolo.anteprimaarticolo}}</p>
-    <!--<a href="#">Leggi tutto</a>-->
+    <a href="#">Leggi tutto</a>
     <RouterLink :to="'/articolo/' + articolo.idarticolo">Leggi tutto</RouterLink>
   </article>
-</template>
+</template>-->

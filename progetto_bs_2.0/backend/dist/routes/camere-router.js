@@ -24,11 +24,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const articoliController = __importStar(require("../controllers/articoli-controller"));
+const camereController = __importStar(require("../controllers/camere-controller"));
 const router = (0, express_1.Router)();
-router.get("/api/articoli", articoliController.allArticles);
-router.get("/api/articoli/:n", articoliController.lastNArticles);
-router.get("/api/articoli/categoria/:idcategory", articoliController.articlesOfCategory);
-router.get("/api/articoli/autore/:idautore", articoliController.articlesOfAuthor);
-router.get("/api/articolo/:id", articoliController.articleFromID);
+router.get("/api/camere/:idnomecamera", camereController.oneRoom);
+/*router.get("/api/articoli/:n", camereController.lastNArticles)
+router.get("/api/articoli/categoria/:idcategory", camereController.articlesOfCategory)
+router.get("/api/articoli/autore/:idautore", camereController.articlesOfAuthor)
+router.get("/api/articolo/:id", camereController.articleFromID)*/
 exports.default = router;

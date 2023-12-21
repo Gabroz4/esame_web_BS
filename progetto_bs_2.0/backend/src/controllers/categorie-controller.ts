@@ -1,4 +1,4 @@
-import { Request, Response } from "express"
+/*import { Request, Response } from "express"
 import { connection } from "../utils/db"
 
 export async function allCategories(req: Request, res: Response) {
@@ -22,4 +22,4 @@ export async function categoryFromID(req: Request, res: Response) {
       res.json(results)
     }
   )
-}
+}*/

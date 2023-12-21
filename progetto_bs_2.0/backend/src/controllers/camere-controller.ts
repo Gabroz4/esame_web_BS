@@ -1,18 +1,18 @@
 import { Request, Response } from "express"
 import { connection } from "../utils/db"
 
-export async function allArticles(req: Request, res: Response) {
+export async function oneRoom(req: Request, res: Response) {
   connection.execute(
-    `SELECT idarticolo, titoloarticolo, dataarticolo, anteprimaarticolo, imgarticolo, nome
-     FROM articolo, autore
-     WHERE idautore=autore`,
-    [],
+    `SELECT nomecamera, postiletto, prezzonotte, descrizione
+     FROM camere
+     WHERE idnomecamera=nomecamera`,
+    [req.params.idnomecamera],
     function (err, results, fields) {
       res.json(results)
     }
   )
 }
-
+/*
 export async function lastNArticles(req: Request, res: Response) {
   connection.execute(
     `SELECT idarticolo, titoloarticolo, dataarticolo, anteprimaarticolo, imgarticolo, nome
@@ -59,4 +59,4 @@ export async function articlesOfAuthor(req: Request, res: Response) {
       res.json(results)
     }
   )
-}
+}*/

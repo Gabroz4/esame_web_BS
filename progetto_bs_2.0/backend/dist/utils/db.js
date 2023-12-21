@@ -9,5 +9,5 @@ exports.connection = mysql2_1.default.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'blogisw'
+    database: 'chaletalpi'
 });

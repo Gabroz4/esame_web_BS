@@ -1,7 +1,7 @@
 import express, { Express } from "express"
-import articoliRouter from "./routes/articoli-router"
-import categorieRouter from "./routes/categorie-router"
-import autoriRouter from "./routes/autori-router"
+import camereRouter from "./routes/camere-router"
+/*import categorieRouter from "./routes/categorie-router"
+import autoriRouter from "./routes/autori-router"*/
 import history from "connect-history-api-fallback"
 
 const app: Express = express()
@@ -11,9 +11,9 @@ app.use(history())
 app.use(express.static("public"))
 app.use(express.static("dist-frontend"))
 
-app.use(articoliRouter)
-app.use(categorieRouter)
-app.use(autoriRouter)
+app.use(camereRouter)
+/*app.use(categorieRouter)
+app.use(autoriRouter)*/
 
 app.use(function(req, res, next) {
   res.setHeader("Content-Type", "text/plain")

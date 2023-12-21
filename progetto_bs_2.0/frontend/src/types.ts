@@ -1,23 +1,27 @@
-export interface Articolo {
-    idarticolo: number
-    titoloarticolo: string
-    dataarticolo: string
-    anteprimaarticolo: string
-    imgarticolo: string
+export interface Camera {
+    nomecamera: string
+    postiletto: number
+    prezzonotte: number
+    descrizione: string
+}
+/*
+export interface Utente {
     nome: string
+    cognome: string
+    email: string
+    password: string
 }
 
-export interface DettagliArticolo {
-    idarticolo: number
-    titoloarticolo: string
-    dataarticolo: string
-    imgarticolo: string
+export interface Admin {
     nome: string
-    testoarticolo: string
+    cognome: string
+    email: string
+    password: string
 }
 
-export interface Autore {
-    username: string
+export interface Login {
     nome: string
-    argomenti: string
-}
+    cognome: string
+    email: string
+    password: string
+}*/

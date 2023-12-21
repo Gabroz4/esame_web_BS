@@ -1,32 +1,26 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.categoryFromID = exports.allCategories = void 0;
-const db_1 = require("../utils/db");
-function allCategories(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        db_1.connection.execute(`SELECT idcategoria, nomecategoria
-     FROM categoria`, [], function (err, results, fields) {
-            res.json(results);
-        });
-    });
+/*import { Request, Response } from "express"
+import { connection } from "../utils/db"
+
+export async function allCategories(req: Request, res: Response) {
+  connection.execute(
+    `SELECT idcategoria, nomecategoria
+     FROM categoria`,
+    [],
+    function(err, results, fields) {
+      res.json(results)
+    }
+  )
 }
-exports.allCategories = allCategories;
-function categoryFromID(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        db_1.connection.execute(`SELECT idcategoria, nomecategoria
+
+export async function categoryFromID(req: Request, res: Response) {
+  connection.execute(
+    `SELECT idcategoria, nomecategoria
      FROM categoria
-     WHERE idcategoria=?`, [req.params.id], function (err, results, fields) {
-            res.json(results);
-        });
-    });
-}
-exports.categoryFromID = categoryFromID;
+     WHERE idcategoria=?`,
+    [req.params.id],
+    function(err, results, fields) {
+      res.json(results)
+    }
+  )
+}*/

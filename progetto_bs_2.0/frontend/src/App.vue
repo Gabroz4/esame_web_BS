@@ -5,9 +5,9 @@
   <nav>
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/archivio">Archivio</router-link></li>
-      <li><router-link to="/contatti">Contatti</router-link></li>
-      <li><router-link to="/login">Login</router-link></li>
+      <li><router-link to="/camere">Camere</router-link></li>
+     <!-- <li><router-link to="/user">Profilo</router-link></li>
+      <li><router-link to="/login">Login</router-link></li>-->
     </ul>
   </nav>
   <main>
@@ -34,7 +34,7 @@
     </section>
   </aside>
   <footer>
-    <p>Fondamenti di Sistemi Web - A.A. 2021/2022</p>
+    <p>Esame di Ingegneria dei sistemi web - Stefani Tommaso e Broccoli Gabriele</p>
   </footer>
 </template>
 

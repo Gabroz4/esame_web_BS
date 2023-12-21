@@ -1,4 +1,4 @@
-<script lang="ts">
+<!--<script lang="ts">
 import { defineComponent } from "vue"
 import axios from "axios"
 import { Autore } from "../types"
@@ -37,4 +37,4 @@ export default defineComponent({
       </tr>
     </table>
   </section>
-</template>
+</template>-->

@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <h2>Login</h2>
   <form action="#" method="POST">
     <ul>
@@ -15,4 +15,4 @@
       </li>
     </ul>
   </form>
-</template>
+</template>-->

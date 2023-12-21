@@ -1,4 +1,4 @@
-<script lang="ts">
+<!--<script lang="ts">
 import { defineComponent } from "vue"
 import axios from "axios"
 import { DettagliArticolo } from "../types"
@@ -31,4 +31,4 @@ export default defineComponent({
       <p>{{articolo.testoarticolo}}</p>
     </article>
   </template>
-</template>
+</template>-->
