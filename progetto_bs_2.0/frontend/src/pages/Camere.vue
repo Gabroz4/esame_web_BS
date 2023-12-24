@@ -11,7 +11,7 @@ export default defineComponent({
   },
   methods: {
     getCamere() {
-      axios.get("/api/camere")
+      axios.get("/api/articolo/" + this.$route.params.idCamera)
         .then(response => this.camere = response.data)
     }
   },
@@ -23,11 +23,10 @@ export default defineComponent({
 
 <template>
   <h2>Camere</h2>
-  <!--<article v-for="camera in camere">-->
+  <article v-for="camera in camere">
     <img :src="'/img/finestag200607025.jpg'" alt="" />
-    <!--<h3>{{camera.nomecamera}}</h3>
-    <p>{{camere.prezzonotte}}</p>
+    <h3>{{camera.nomecamera}}</h3>
+    <p>{{camera.prezzonotte}}</p>
     <p>{{camera.postiletto}}</p>
-    <RouterLink :to="'/camera/' + camera.nomecamera">Leggi tutto</RouterLink>
-  </article>-->
+  </article>
 </template>

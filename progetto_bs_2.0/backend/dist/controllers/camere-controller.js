@@ -9,18 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.oneRoom = void 0;
+exports.allRooms = void 0;
 const db_1 = require("../utils/db");
-function oneRoom(req, res) {
+function allRooms(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        db_1.connection.execute(`SELECT nomecamera, postiletto, prezzonotte, descrizione
-     FROM camere
-     WHERE idnomecamera=nomecamera`, [req.params.idnomecamera], function (err, results, fields) {
+        db_1.connection.execute(`SELECT *
+     FROM camere`, [], function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: "Internal Server Error" });
+                return;
+            }
             res.json(results);
         });
     });
 }
-exports.oneRoom = oneRoom;
+exports.allRooms = allRooms;
 /*
 export async function lastNArticles(req: Request, res: Response) {
   connection.execute(

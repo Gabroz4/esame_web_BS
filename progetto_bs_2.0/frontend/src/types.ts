@@ -3,6 +3,10 @@ export interface Camera {
     postiletto: number
     prezzonotte: number
     descrizione: string
+    imgcamera1: string
+    imgcamera2: string
+    imgcamera3: string
+    imgcamera4: string
 }
 /*
 export interface Utente {

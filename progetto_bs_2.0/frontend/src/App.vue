@@ -11,20 +11,7 @@
   <main>
     <router-view />
   </main>
-  <aside>
-    <section>
-      <h2>Post Popolari</h2>
-      <ul>
-
-      </ul>
-    </section>
-    <section>
-      <h2>Categorie</h2>
-      <ul>
-
-      </ul>
-    </section>
-  </aside>
+ 
   <footer>
     <p>Esame di Ingegneria dei sistemi web - Stefani Tommaso e Broccoli Gabriele</p>
   </footer>

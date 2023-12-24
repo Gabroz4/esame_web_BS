@@ -11,7 +11,7 @@ export default defineComponent({
   },
   methods: {
     getUltimiArticoli() {
-      axios.get("/api/camere/*")
+      axios.get("/api/camere")
         .then(response => this.datiCamere = response.data)
     }
   },
@@ -23,12 +23,12 @@ export default defineComponent({
 
 <template>
   <h2>Home</h2>
+  <img :src="'/img/' + 'home.jpg'" alt="" />
   <article v-for="camera in datiCamere">
-    <img :src="'/img/' + ''" alt="" />
     <h3>{{camera.nomecamera}}</h3>
+    <img :src="'/img/' + camera.imgcamera1" alt="" />   
+    <img :src="'/img/' + camera.imgcamera2" alt="" /> 
     <p>{{camera.postiletto}} - {{camera.nomecamera}}</p>
-    <p>{{camera.descrizione}}</p>
-    <a href="#">Leggi tutto</a>
-    <RouterLink :to="'/camere/' + camera.nomecamera">Leggi tutto</RouterLink>
+    <RouterLink :to="'/camere/' + camera.nomecamera">Prenota</RouterLink>
   </article>
 </template>

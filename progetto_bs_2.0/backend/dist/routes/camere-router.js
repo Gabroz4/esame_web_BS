@@ -26,9 +26,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const camereController = __importStar(require("../controllers/camere-controller"));
 const router = (0, express_1.Router)();
-router.get("/api/camere/:idnomecamera", camereController.oneRoom);
-/*router.get("/api/articoli/:n", camereController.lastNArticles)
-router.get("/api/articoli/categoria/:idcategory", camereController.articlesOfCategory)
-router.get("/api/articoli/autore/:idautore", camereController.articlesOfAuthor)
-router.get("/api/articolo/:id", camereController.articleFromID)*/
+router.get("/api/camere", camereController.allRooms);
 exports.default = router;

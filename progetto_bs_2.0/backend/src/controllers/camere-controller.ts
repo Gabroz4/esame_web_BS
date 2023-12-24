@@ -1,16 +1,20 @@
 import { Request, Response } from "express"
 import { connection } from "../utils/db"
 
-export async function oneRoom(req: Request, res: Response) {
+export async function allRooms(req: Request, res: Response) {
   connection.execute(
-    `SELECT nomecamera, postiletto, prezzonotte, descrizione
-     FROM camere
-     WHERE idnomecamera=nomecamera`,
-    [req.params.idnomecamera],
+    `SELECT *
+     FROM camere`,
+    [],
     function (err, results, fields) {
-      res.json(results)
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        return;
+      }
+      res.json(results);
     }
-  )
+  );
 }
 /*
 export async function lastNArticles(req: Request, res: Response) {
