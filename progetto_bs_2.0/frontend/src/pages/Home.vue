@@ -1,18 +1,18 @@
-<!--<script lang="ts">
+<script lang="ts">
 import { defineComponent } from "vue"
 import axios from "axios"
-import { Articolo } from "../types"
+import { Camera } from "../types"
 
-export default defineComponent({*/
+export default defineComponent({
   data() {
     return {
-      datiArticoli: [] as Articolo[]
+      datiCamere: [] as Camera[]
     }
   },
   methods: {
     getUltimiArticoli() {
-      axios.get("/api/articoli/2")
-        .then(response => this.datiArticoli = response.data)
+      axios.get("/api/camere/*")
+        .then(response => this.datiCamere = response.data)
     }
   },
   mounted() {
@@ -22,13 +22,13 @@ export default defineComponent({*/
 </script>
 
 <template>
-  <h2>Ultimi Articoli</h2>
-  <article v-for="articolo in datiArticoli">
-    <img :src="'/img/' + articolo.imgarticolo" alt="" />
-    <h3>{{articolo.titoloarticolo}}</h3>
-    <p>{{articolo.nome}} - {{articolo.dataarticolo.slice(0, 10)}}</p>
-    <p>{{articolo.anteprimaarticolo}}</p>
+  <h2>Home</h2>
+  <article v-for="camera in datiCamere">
+    <img :src="'/img/' + ''" alt="" />
+    <h3>{{camera.nomecamera}}</h3>
+    <p>{{camera.postiletto}} - {{camera.nomecamera}}</p>
+    <p>{{camera.descrizione}}</p>
     <a href="#">Leggi tutto</a>
-    <RouterLink :to="'/articolo/' + articolo.idarticolo">Leggi tutto</RouterLink>
+    <RouterLink :to="'/camere/' + camera.nomecamera">Leggi tutto</RouterLink>
   </article>
-</template>-->
+</template>

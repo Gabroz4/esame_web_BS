@@ -5,9 +5,9 @@ import App from "./App.vue"
 import Home from "./pages/Home.vue"
 import Camera from "./pages/Camere.vue"
 /*import Contatti from "./pages/Contatti.vue"
-import Login from "./pages/Login.vue"
+import Login from "./pages/Login.vue"*/
 import NotFound from "./pages/NotFound.vue"
-import ArticoloVue from "./pages/Articolo.vue"*/
+/*import ArticoloVue from "./pages/Articolo.vue"*/
 
 const router: Router = createRouter({
   history: createWebHistory(),
@@ -15,9 +15,9 @@ const router: Router = createRouter({
     { path: "/", component: Home },
     { path: "/camere", component: Camera },
    /* { path: "/contatti", component: Contatti },
-    { path: "/login", component: Login },
+    { path: "/login", component: Login },*/
     { path: "/:pathMatch(.*)*", component: NotFound },
-    { path: "/articolo/:idArticolo", component: ArticoloVue }*/
+    /* { path: "/articolo/:idArticolo", component: ArticoloVue }*/
   ]
 })
 
