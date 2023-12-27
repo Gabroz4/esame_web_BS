@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>CHALET delle Alpi</title>
+  </head>
+
+  <body>
+    <div id="app">
+
+            <header>
+                <img class="logo" src="./IMG/logo.jpg" alt="" />
+              <h1 class="hometitle">CHALET delle Alpi</h1>
+              
+            </header>
+            <nav class="navbar">
+              <ul>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/camere">Camere</router-link></li>
+              </ul>
+            </nav>
+
+            <main>
+                <h2>Home</h2>
+                <img class="home" src="./IMG/home.jpg" alt="" />
+                <h3>Chi siamo - Benvenuti</h3>
+                <p>Situato tra le maestose vette montane, il Chalet delle Alpi è il rifugio perfetto per gli amanti della natura e delle atmosfere accoglienti. Immerso in uno scenario alpino incantevole, il nostro chalet offre una calda e autentica esperienza di montagna.</p>
+                <h3>Camere uniche e confortevoli</h3>
+                <p>Le nostre camere sono progettate con cura per garantire il massimo comfort durante il vostro soggiorno. Ogni stanza è un rifugio accogliente, arredata con elementi tradizionali delle Alpi e dotata di moderni comfort. Dalle finestre potrete ammirare panorami mozzafiato delle vette circostanti e respirare l'aria fresca di montagna.</p>
+                <h3>Le nostre Camere</h3>
+                <article class="cameraprev" v-for="camera in datiCamere">
+                  <!--<h3>Nomecamera: Napoli</h3>  -->
+                  <img src="./IMG/002.jpg" alt="" />  
+                  <p>Nomecamera: Napoli - Posti letto: 3</p>
+                  <p class="routerview">Prenota</p>
+                </article>
+
+                <article class="cameraprev" v-for="camera in datiCamere">
+                    <!--<h3>Nomecamera: Napoli</h3>  -->
+                    <img src="./IMG/001.jpg" alt="" />  
+                    <p>Nomecamera: Bologna - Posti letto: 2</p>
+                    <p class="routerview">Prenota</p>
+                  </article>
+            </main>
+           
+            <footer>
+              <p>Esame di Ingegneria dei sistemi web - Stefani Tommaso e Broccoli Gabriele</p>
+            </footer>
+
+
+    </div>
+  </body>
+  
+</html>

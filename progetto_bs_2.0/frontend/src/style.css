@@ -1,3 +1,93 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 1.5em;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #666;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Main Styles */
+main {
+  padding: 20px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Home Page Styles */
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+article {
+  margin-bottom: 30px;
+}
+
+article h3 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+article p {
+  margin-bottom: 10px;
+}
+
+/* Router Link Styles */
+.router-link-exact-active {
+  color: rgb(219, 69, 83);
+  background-color: #fff;
+}
 
 @media screen and (min-width: 768px) {
   nav {
