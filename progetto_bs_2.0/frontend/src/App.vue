@@ -1,8 +1,9 @@
 <template>
   <header>
-    <h1>CHALET delle Alpi</h1>
+    <img class="logo" :src="'/img/' + 'logo.jpg'" alt="" />
+    <h1 class="hometitle">CHALET delle Alpi</h1>
   </header>
-  <nav>
+  <nav class="navbar">
     <ul>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/camere">Camere</router-link></li>
@@ -19,7 +20,7 @@
 
 <style scoped>
 .router-link-exact-active {
-  color: rgb(219, 69, 83);
-  background-color: #fff;
+  background-color: transparent;
+  color: #f0b31a;
 }
 </style>
