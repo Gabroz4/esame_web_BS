@@ -15,48 +15,31 @@
       </div>
     </form>
   </div>
+
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script>
 import axios from 'axios';
 
-export default defineComponent({
+export default {
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
+      message: '',
     };
   },
   methods: {
-    async submitForm() {
-      // Prevenire l'invio del modulo se i campi sono vuoti
-      if (!this.email || !this.password) {
-        alert('Per favore, inserisci sia l\'email che la password');
-        return;
-      }
-
-      try {
-        // Invia una richiesta POST al server con i dati del modulo
-        const response = await axios.post('/api/login', {
-          email: this.email,
-          password: this.password,
+    login() {
+      axios.post('http://localhost:3000/api/login', { username: this.username, password: this.password })
+        .then(response => {
+          this.message = response.data.message;
+        })
+        .catch(error => {
+          this.message = 'Errore durante il login';
+          console.error('Errore durante il login', error);
         });
-
-        // Controlla se l'autenticazione è riuscita
-        if (response.data.success) {
-          // Se l'autenticazione ha avuto successo, reindirizza l'utente alla home page
-          this.$router.push('/');
-        } else {
-          // Se l'autenticazione non ha avuto successo, mostra un messaggio di errore
-          alert('Email o password non corretti');
-        }
-      } catch (error) {
-        // Gestisci eventuali errori di rete
-        console.error('Si è verificato un errore durante l\'autenticazione:', error);
-        alert('Si è verificato un errore durante l\'autenticazione. Per favore, riprova più tardi.');
-      }
     },
   },
-});
+};
 </script>
