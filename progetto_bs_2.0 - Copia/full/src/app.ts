@@ -4,16 +4,17 @@ import camereRouter from "./routes/camere-router";
 /*import categorieRouter from "./routes/categorie-router";
 import autoriRouter from "./routes/autori-router";*/
 import history from "connect-history-api-fallback";
+import { connection } from './utils/db'; // Assicurati di fornire il percorso corretto al tuo modulo di connessione
 
 const app: Express = express();
 const port: number = 3000;
 
 app.use(history());
 app.use(express.static("public"));
-app.use(express.static("dist-frontend"));
+//app.use(express.static("dist-frontend"));
 
-// Usa bodyParser per analizzare il corpo delle richieste POST
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(camereRouter);
 /*app.use(categorieRouter);
