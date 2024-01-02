@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+    <div class="form-container">
     <h2>Registrazione</h2>
     <form @submit.prevent="submitForm">
       <div>
@@ -23,6 +24,7 @@
       </div>
     </form>
   </div>
+</div>
 </template>
 
 <script lang="ts">
@@ -65,7 +67,7 @@ export default defineComponent({
 
         if (response.data.success) {
           alert('Registrazione avvenuta con successo');
-          // Puoi anche reindirizzare l'utente a una pagina di login o a qualsiasi altra pagina dopo la registrazione
+          this.$router.push('/login')
         } else {
           alert('Errore durante la registrazione');
         }

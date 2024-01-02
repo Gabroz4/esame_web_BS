@@ -7,7 +7,6 @@ import Camere from "./pages/Camere.vue"
 import Login from "./pages/Login.vue"
 import Registrati from "./pages/Registrati.vue"
 import NotFound from "./pages/NotFound.vue"
-/*import ArticoloVue from "./pages/Articolo.vue"*/
 
 const router: Router = createRouter({
   history: createWebHistory(),
@@ -16,8 +15,8 @@ const router: Router = createRouter({
     { path: "/login", component: Login },
     { path: "/registrati", component: Registrati },
     { path: "/login", component: Login },
+    { path: "/camere/:nomecamera", component: Camere },
     { path: "/:pathMatch(.*)*", component: NotFound },
-    /* { path: "/articolo/:idArticolo", component: ArticoloVue }*/
   ]
 })
 

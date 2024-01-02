@@ -10,13 +10,13 @@ export default defineComponent({
     }
   },
   methods: {
-    getUltimiArticoli() {
+    getCamere() {
       axios.get("/api/camere")
         .then(response => this.datiCamere = response.data)
     }
   },
   mounted() {
-    this.getUltimiArticoli()
+    this.getCamere()
   }
 })
 </script>

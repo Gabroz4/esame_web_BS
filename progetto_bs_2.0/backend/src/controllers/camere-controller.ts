@@ -16,3 +16,20 @@ export async function allRooms(req: Request, res: Response) {
     }
   );
 }
+
+export async function oneRoom(req: Request, res: Response) {
+  connection.execute(
+    `SELECT *
+     FROM camere
+     WHERE nomecamera = ?`,
+    [req.params.nomecamera],
+    function (err, results, fields) {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+        return;
+      }
+      res.json(results);
+    }
+  );
+}

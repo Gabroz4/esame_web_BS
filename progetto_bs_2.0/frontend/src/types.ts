@@ -16,3 +16,12 @@ export interface User {
     password: string;
     imgutente: string;
 }
+
+export interface Prenotazione {
+    id: number;
+    email: string;
+    datainizio: Date;
+    datafine: Date;
+    giornitot: number;
+    prezzotot: number;
+}

@@ -37,6 +37,7 @@ ENGINE = InnoDB;
 -- Table `chaletalpi`.`prenotazione`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chaletalpi`.`prenotazione` (
+  `id` INT,
   `datainizio` DATE,
   `datafine` DATE,
   `prezzo` FLOAT(8),

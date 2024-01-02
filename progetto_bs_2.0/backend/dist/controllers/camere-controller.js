@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.allRooms = void 0;
+exports.oneRoom = exports.allRooms = void 0;
 const db_1 = require("../utils/db");
 function allRooms(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -25,3 +25,18 @@ function allRooms(req, res) {
     });
 }
 exports.allRooms = allRooms;
+function oneRoom(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        db_1.connection.execute(`SELECT *
+     FROM camere
+     WHERE nomecamera = ?`, [req.params.nomecamera], function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: "Internal Server Error" });
+                return;
+            }
+            res.json(results);
+        });
+    });
+}
+exports.oneRoom = oneRoom;

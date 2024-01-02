@@ -6,27 +6,30 @@ import { Camera } from "../types"
 export default defineComponent({
   data() {
     return {
-      camere: [] as Camera []
+      camera: null as Camera | null
     }
   },
   methods: {
-    getCamere() {
-      axios.get("/api/camera/" + this.$route.params.idCamera)
-        .then(response => this.camere = response.data)
-    }
+    unaCamera() {
+      axios.get("/api/camere/" + this.$route.params.nomecamera)
+        .then(response => {
+          this.camera = response.data[0];
+        })
+    },
   },
   mounted() {
-    this.getCamere()
+    this.unaCamera();
   }
 })
 </script>
-
 <template>
-  <h2>Camere</h2>
-  <article v-for="camera in camere">
-    <img :src="'/img/finestag200607025.jpg'" alt="" />
-    <h3>{{camera.nomecamera}}</h3>
-    <p>{{camera.prezzonotte}}</p>
-    <p>{{camera.postiletto}}</p>
-  </article>
+<template v-if="camera">
+  <h2>Camera {{ camera.nomecamera }}</h2>
+  <p>Prezzo a notte: {{ camera.prezzonotte }}€</p>
+  <p>Posti letto: {{ camera.postiletto }}</p>
+  <img :src="'/img/' + camera.imgcamera1" alt="" />
+  <input type="date" name="data inizio">
+  <input type="date" name="data fine">
+  <input type="submit" value="conferma">
+</template>
 </template>

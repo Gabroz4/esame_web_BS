@@ -27,4 +27,5 @@ const express_1 = require("express");
 const camereController = __importStar(require("../controllers/camere-controller"));
 const router = (0, express_1.Router)();
 router.get("/api/camere", camereController.allRooms);
+router.get("/api/camere/:nomecamera", camereController.oneRoom);
 exports.default = router;
