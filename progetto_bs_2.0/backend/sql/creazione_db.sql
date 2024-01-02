@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 -- Table `chaletalpi`.`prenotazione`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chaletalpi`.`prenotazione` (
-  `id` INT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `datainizio` DATE,
   `datafine` DATE,
   `prezzo` FLOAT(8),
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `chaletalpi`.`prenotazione` (
   `nomecamera` VARCHAR(45) NOT NULL,
   FOREIGN KEY (`nomecamera`) REFERENCES camere (`nomecamera`),
   FOREIGN KEY (`email`) REFERENCES utente (`email`),
-  PRIMARY KEY (`nomecamera`, `email`, `datainizio`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;

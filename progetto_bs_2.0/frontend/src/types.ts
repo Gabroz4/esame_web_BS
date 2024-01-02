@@ -3,6 +3,7 @@ export interface Camera {
     postiletto: number;
     prezzonotte: number;
     descrizione: string;
+    isfull: boolean;
     imgcamera1: string;
     imgcamera2: string;
     imgcamera3: string;
@@ -20,6 +21,7 @@ export interface User {
 export interface Prenotazione {
     id: number;
     email: string;
+    nomecamera: string;
     datainizio: Date;
     datafine: Date;
     giornitot: number;
