@@ -25,7 +25,7 @@ export async function login(req: Request, res: Response) {
     if (Array.isArray(results) && results.length > 0) {
       // Utilizzo del tipo più preciso per results[0]
       const user: Record<string, unknown> = results[0] as Record<string, unknown>;
-      if (user) {
+      if (user) {        
         res.json({ success: true, message: 'Login riuscito' });
       } else {
         res.json({ success: false, message: 'Credenziali non valide' });

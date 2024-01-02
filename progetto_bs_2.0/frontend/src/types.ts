@@ -14,5 +14,5 @@ export interface User {
     cognome: string;
     email: string;
     password: string;
-    ruolo: "admin" | "user" | undefined;
+    imgutente: string;
 }
