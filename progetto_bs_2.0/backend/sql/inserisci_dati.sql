@@ -7,6 +7,7 @@ INSERT INTO `utente` (`nome`, `cognome`, `email`, `password`) VALUES
 ('Mario', 'Rossi', 'mario.rossi@mario.com', SHA2('Ciao mamma', 512)),
 ('Luca', 'Bianchi', 'luca.bianchi@luca.com', SHA2('Password123', 512)),
 ('Anna', 'Verdi', 'anna.verdi@anna.com', SHA2('SecurePwd', 512)),
+('admin', 'admin', 'admin@admin.com', SHA2('admin', 512)),
 ('Giovanni', 'Neri', 'giovanni.neri@giovanni.com', SHA2('StrongPass', 512));
 
 

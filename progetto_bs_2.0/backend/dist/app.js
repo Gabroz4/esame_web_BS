@@ -9,6 +9,7 @@ const camere_router_1 = __importDefault(require("./routes/camere-router"));
 const user_router_1 = __importDefault(require("./routes/user-router"));
 const registrazione_router_1 = __importDefault(require("./routes/registrazione-router")); // Importa il router di registrazione
 const connect_history_api_fallback_1 = __importDefault(require("connect-history-api-fallback"));
+const prenotazione_router_1 = __importDefault(require("./routes/prenotazione-router"));
 // Creazione di un'app Express
 const app = (0, express_1.default)();
 // Porta su cui il server ascolterà
@@ -26,6 +27,7 @@ app.use(body_parser_1.default.json());
 // Usa i router per gestire le varie route
 app.use(camere_router_1.default);
 app.use(user_router_1.default);
+app.use(prenotazione_router_1.default);
 app.use(registrazione_router_1.default); // Usa il router di registrazione
 // Gestione della risposta per le pagine non trovate
 app.use((req, res) => {
