@@ -55,8 +55,13 @@ export default defineComponent({
         // Controlla se l'autenticazione è riuscita
         if (response.data.success) {
           // Salva il token di accesso simulato in sessionStorage
-          sessionStorage.setItem('userToken', 'IsLoggedIn');
-
+          if (this.email !== 'admin@admin.com') {
+            sessionStorage.setItem('userToken', 'IsLoggedIn');
+          } else {
+            sessionStorage.setItem('adminToken', 'Admin');
+            sessionStorage.setItem('userToken', 'IsLoggedIn');
+          }
+          sessionStorage.setItem('emailToken', this.email);
           // Se l'autenticazione ha avuto successo, reindirizza l'utente alla home page
           this.$router.push('/').then(() => {
           // Forza la ricarica della pagina

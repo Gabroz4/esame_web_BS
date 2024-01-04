@@ -7,6 +7,8 @@ import Camere from "./pages/Camere.vue"
 import Login from "./pages/Login.vue"
 import Registrati from "./pages/Registrati.vue"
 import NotFound from "./pages/NotFound.vue"
+import Profilo from "./pages/Profilo.vue"
+import ProfiloAdmin from "./pages/ProfiloAdmin.vue"
 
 const router: Router = createRouter({
   history: createWebHistory(),
@@ -16,7 +18,10 @@ const router: Router = createRouter({
     { path: "/registrati", component: Registrati },
     { path: "/login", component: Login },
     { path: "/camere/:nomecamera", component: Camere },
+    { path: "/profilo", component: Profilo },
+    { path: "/admin", component: ProfiloAdmin },
     { path: "/:pathMatch(.*)*", component: NotFound },
+    
   ]
 })
 
