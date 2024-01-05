@@ -17,7 +17,7 @@ function registraUtente(req, res) {
         const { nome, cognome, email, password } = req.body;
         try {
             if (!nome || !cognome || !email || !password) {
-                return res.json({ success: false, message: 'Per favore, compila tutti i campi del modulo' });
+                return res.json({ success: false, message: 'Compila tutti i campi del modulo' });
             }
             const hashedPassword = (0, crypto_1.createHash)('sha512').update(password).digest('hex').substring(0, 45);
             const query = 'INSERT INTO utente (nome, cognome, email, password) VALUES (?, ?, ?, ?)';

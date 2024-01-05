@@ -66,7 +66,7 @@ export default defineComponent({
         })
         .catch((error) => {
           console.error('Errore nella richiesta:', error);
-          alert('Errore nella richiesta al server');
+          alert('Errore: devi registrarti per prenotare');
         });
     }
   },

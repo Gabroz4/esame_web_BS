@@ -1,79 +1,73 @@
 <template>
   <div class="container">
     <div class="form-container">
-    <h2>Registrazione</h2>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" v-model="nome" />
-      </div>
-      <div>
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" v-model="cognome" />
-      </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" />
-      </div>
-      <div>
-        <input type="submit" value="Registrati" />
-      </div>
-    </form>
+      <h2>Registrazione</h2>
+      <form @submit.prevent="submitForm">
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" v-model="user.nome" />
+        </div>
+        <div>
+          <label for="cognome">Cognome:</label>
+          <input type="text" id="cognome" v-model="user.cognome" />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" v-model="user.email" />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" v-model="user.password" />
+        </div>
+        <div>
+          <input type="submit" value="Registrati" :disabled="isLoading" />
+        </div>
+        <div v-if="error" class="error-message">{{ error }}</div>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import axios from 'axios';
+import { User } from '../types';
 
 export default defineComponent({
   data() {
     return {
-      nome: '',
-      cognome: '',
-      email: '',
-      password: '',
+      user: {} as User,
+      isLoading: false,
+      error: '',
     };
   },
 
   methods: {
     async submitForm() {
-      if (!this.nome || !this.cognome || !this.email || !this.password) {
-        alert('Per favore, compila tutti i campi del modulo');
+      this.error = ''; // Reset error on each submit
+      if (!this.user.nome || !this.user.cognome || !this.user.email || !this.user.password) {
+        this.error = 'Per favore, compila tutti i campi del modulo';
         return;
       }
 
-      console.log('Dati del modulo:', {
-        nome: this.nome,
-        cognome: this.cognome,
-        email: this.email,
-        password: this.password,
-      });
+      this.isLoading = true;
 
       try {
-        const response = await axios.post('/api/registrati', {
-          nome: this.nome,
-          cognome: this.cognome,
-          email: this.email,
-          password: this.password,
-        });
+        const response = await axios.post('/api/registrati', this.user);
 
         console.log('Risposta del server:', response);
 
         if (response.data.success) {
           alert('Registrazione avvenuta con successo');
-          this.$router.push('/login')
+          this.$router.push('/login');
         } else {
-          alert('Errore durante la registrazione');
+          this.error = 'Errore durante la registrazione';
         }
       } catch (error) {
         console.error('Si è verificato un errore durante la registrazione:', error);
-        alert('Si è verificato un errore durante la registrazione. Per favore, riprova più tardi.');
+        this.error = 'Si è verificato un errore durante la registrazione. Per favore, riprova più tardi.';
+      } finally {
+        this.isLoading = false;
       }
     },
   },

@@ -12,16 +12,14 @@ USE `chaletalpi` ;
 -- Table `chaletalpi`.`camere`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chaletalpi`.`camere` (
-  `nomecamera` VARCHAR(45) NOT NULL,
+  `nomecamera` VARCHAR(50) NOT NULL,
   `postiletto` INT NOT NULL,
   `prezzonotte` INT NOT NULL,
-  `descrizione` VARCHAR(45),
-  `imgcamera1` VARCHAR(100),
-  `imgcamera2` VARCHAR(100),
-  `imgcamera3` VARCHAR(100),
-  `imgcamera4` VARCHAR(100),
-  PRIMARY KEY (`nomecamera`))
-ENGINE = InnoDB;
+  `descrizione` TEXT,
+  `imgcamera1` VARCHAR(255),
+  `imgcamera2` VARCHAR(255),
+  PRIMARY KEY (`nomecamera`)
+) ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `chaletalpi`.`utente`
 -- -----------------------------------------------------

@@ -4,11 +4,11 @@
       <h2>Login</h2>
       <form @submit.prevent="submitForm">
         <div>
-          <label for="email">Email:  </label>
+          <label for="email">Email: </label>
           <input type="email" id="email" v-model="email" />
         </div>
         <div>
-          <label for="password">Password:  </label>
+          <label for="password">Password: </label>
           <input type="password" id="password" v-model="password" />
         </div>
         <div>
@@ -63,10 +63,19 @@ export default defineComponent({
           }
           sessionStorage.setItem('emailToken', this.email);
           // Se l'autenticazione ha avuto successo, reindirizza l'utente alla home page
-          this.$router.push('/').then(() => {
-          // Forza la ricarica della pagina
-          window.location.reload();
-        });
+
+          if (!sessionStorage.getItem('adminToken')) {
+            this.$router.push('/').then(() => {
+              // Forza la ricarica della pagina
+              window.location.reload();
+            });
+          } else {
+            this.$router.push('/admin').then(() => {
+              // Forza la ricarica della pagina
+              window.location.reload();
+            });
+          }
+
         } else {
           // Se l'autenticazione non ha avuto successo, mostra un messaggio di errore
           alert('Email o password non corretti');

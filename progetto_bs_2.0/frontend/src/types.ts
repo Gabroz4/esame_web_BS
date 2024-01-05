@@ -6,8 +6,6 @@ export interface Camera {
     isfull: boolean;
     imgcamera1: string;
     imgcamera2: string;
-    imgcamera3: string;
-    imgcamera4: string;
 }
 
 export interface User {

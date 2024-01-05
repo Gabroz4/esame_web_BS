@@ -4,8 +4,10 @@ import camereRouter from './routes/camere-router';
 import userRouter from './routes/user-router';
 import registrazioneRouter from './routes/registrazione-router'; // Importa il router di registrazione
 import history from 'connect-history-api-fallback';
-import { connection } from './utils/db';
 import prenotazioneRouter from './routes/prenotazione-router';
+import profiloRouter from './routes/profilo-router'
+import path from 'path';
+
 
 // Creazione di un'app Express
 const app: Express = express();
@@ -21,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware per la gestione delle route statiche
 app.use(express.static('public'));
-app.use(express.static('dist-frontend'));
+app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
 // Usa bodyParser per analizzare il corpo delle richieste POST
 app.use(bodyParser.json());
@@ -30,6 +32,7 @@ app.use(bodyParser.json());
 app.use(camereRouter);
 app.use(userRouter);
 app.use(prenotazioneRouter);
+app.use(profiloRouter);
 app.use(registrazioneRouter); // Usa il router di registrazione
 
 // Gestione della risposta per le pagine non trovate

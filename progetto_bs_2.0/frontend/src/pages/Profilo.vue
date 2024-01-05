@@ -1,53 +1,71 @@
 <template>
-    <div class="profile">
-      <h1>Profilo Utente</h1>
-      <div class="profile-info">
-        <p><strong>Nome:</strong> {{ user.nome }}</p>
-        <p><strong>Cognome:</strong> {{ user.cognome }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <img :src="'/img/' + user.imgutente" alt="User Image" />
-      </div>
-      <button @click="logout">Logout</button>
+  <div class="profile">
+    <h1>Profilo Utente</h1>
+    <div class="profile-info">
+      <p><strong>Nome:</strong> {{ user.nome }}</p>
+      <p><strong>Cognome:</strong> {{ user.cognome }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
     </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { User } from '../types';
-  import axios from 'axios';
-  
-  export default defineComponent({
-    data() {
-      return {
-        user: {} as User
-      };
+
+    <h2>Prenotazioni</h2>
+    <ul v-for="prenotazione in prenotazioni" :key="prenotazione.id">
+      <li>Id prenotazione: {{ prenotazione.id }}</li>
+      <li>Camera: {{ prenotazione.nomecamera }}</li>
+      <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
+      <li>Totale: {{ prenotazione.prezzo }}€</li>
+      <li>----------------------------------------</li>
+    </ul>
+
+    <button @click="logout">Logout</button>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import axios from 'axios';
+
+export default defineComponent({
+  data() {
+    return {
+      user: {} as any,
+      prenotazioni: [] as any[],
+      emailToken: sessionStorage.getItem('emailToken')
+    };
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem('userToken');
+      sessionStorage.removeItem('emailToken');
+      this.$router.push('/').then(() => {
+        window.location.reload();
+      });
     },
-    methods: {
-      logout() {
-        sessionStorage.removeItem('userToken');
-        sessionStorage.removeItem('emailToken');
-        this.$router.push('/').then(() => {
-          // Forza la ricarica della pagina
-          window.location.reload();
-        });
-      },
-      fetchUserData() {
-        const userToken = sessionStorage.getItem('userToken');
-        axios.get('/api/user', {
-          headers: {
-            Authorization: `Bearer ${userToken}`
-          }
-        })
+    fetchProfileAndPrenotazioni() {
+      //const emailToken = sessionStorage.getItem('emailToken');
+
+      if (!this.emailToken) {
+        console.error('Token dell\'utente non presente');
+        return;
+      }
+
+      axios.get(`/api/user/${this.emailToken}`)
         .then(response => {
-          this.user = response.data;
+          this.user = response.data.profile;
+          this.prenotazioni = response.data.prenotazioni;
         })
         .catch(error => {
-          console.error('Error fetching user data:', error);
+          console.error('Errore durante il recupero del profilo e delle prenotazioni:', error);
+          alert('Si è verificato un errore durante il recupero del profilo e delle prenotazioni. Riprova più tardi.');
         });
     },
-    mounted() {
-      this.fetchUserData();
-    }
-  }
+    formatDates(dateString: string) {
+      // Formatta la data nel formato desiderato (es. '2024-01-22')
+      const date = new Date(dateString);
+      return date.toISOString().split('T')[0];
+    },
+  },
+  mounted() {
+    this.fetchProfileAndPrenotazioni();
+  },
 });
-  </script>
+</script>

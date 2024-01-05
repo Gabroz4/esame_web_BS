@@ -9,7 +9,7 @@
       <li v-if="!isLoggedIn"><router-link to="/login">Accedi</router-link></li>
       <li v-if="!isLoggedIn"><router-link to="/registrati">Registrati</router-link></li>
       <li v-if="isLoggedIn && !isAdmin"><router-link to="/profilo">Profilo</router-link></li>
-      <li v-if="isAdmin"><router-link to="/admin">Profilo Amministratore</router-link></li>
+      <li v-if="isAdmin"><router-link to="/admin">Admin</router-link></li>
     </ul>
   </nav>
   <main>

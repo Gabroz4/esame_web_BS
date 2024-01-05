@@ -9,6 +9,7 @@ import Registrati from "./pages/Registrati.vue"
 import NotFound from "./pages/NotFound.vue"
 import Profilo from "./pages/Profilo.vue"
 import ProfiloAdmin from "./pages/ProfiloAdmin.vue"
+import NuovaCamera from "./pages/NuovaCamera.vue"
 
 const router: Router = createRouter({
   history: createWebHistory(),
@@ -16,10 +17,10 @@ const router: Router = createRouter({
     { path: "/", component: Home },
     { path: "/login", component: Login },
     { path: "/registrati", component: Registrati },
-    { path: "/login", component: Login },
     { path: "/camere/:nomecamera", component: Camere },
     { path: "/profilo", component: Profilo },
     { path: "/admin", component: ProfiloAdmin },
+    { path: "/admin/nuova-camera", component: NuovaCamera },
     { path: "/:pathMatch(.*)*", component: NotFound },
     
   ]
