@@ -15,15 +15,22 @@ export default defineComponent({
         .then(response => this.datiCamere = response.data)
     }
   },
+  computed: {
+    isLoggedIn() {
+      return sessionStorage.getItem('userToken') === 'IsLoggedIn';
+    },
+    isAdmin() {
+      return sessionStorage.getItem('adminToken') === 'Admin';
+    }
+  },
   mounted() {
     this.getCamere()
   }
 })
 </script>
-
 <template>
   <h2>Home</h2>
-  <img class="home" :src="'/img/' + 'home.jpg'" alt="" />
+  <img v-if="!isAdmin" class="home" :src="'/img/' + 'home.jpg'" alt="" />
   <h3>Chi siamo - Benvenuti</h3>
   <p>Situato tra le maestose vette montane, il Chalet delle Alpi è il rifugio perfetto per gli amanti della natura e delle atmosfere accoglienti. Immerso in uno scenario alpino incantevole, il nostro chalet offre una calda e autentica esperienza di montagna.</p>
   <h3>Camere uniche e confortevoli</h3>

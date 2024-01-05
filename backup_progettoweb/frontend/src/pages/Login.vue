@@ -4,11 +4,11 @@
       <h2>Login</h2>
       <form @submit.prevent="submitForm">
         <div>
-          <label for="email">Email:  </label>
+          <label for="email">Email: </label>
           <input type="email" id="email" v-model="email" />
         </div>
         <div>
-          <label for="password">Password:  </label>
+          <label for="password">Password: </label>
           <input type="password" id="password" v-model="password" />
         </div>
         <div>
@@ -55,13 +55,27 @@ export default defineComponent({
         // Controlla se l'autenticazione è riuscita
         if (response.data.success) {
           // Salva il token di accesso simulato in sessionStorage
-          sessionStorage.setItem('userToken', 'IsLoggedIn');
-
+          if (this.email !== 'admin@admin.com') {
+            sessionStorage.setItem('userToken', 'IsLoggedIn');
+          } else {
+            sessionStorage.setItem('adminToken', 'Admin');
+            sessionStorage.setItem('userToken', 'IsLoggedIn');
+          }
+          sessionStorage.setItem('emailToken', this.email);
           // Se l'autenticazione ha avuto successo, reindirizza l'utente alla home page
-          this.$router.push('/').then(() => {
-          // Forza la ricarica della pagina
-          window.location.reload();
-        });
+
+          if (!sessionStorage.getItem('adminToken')) {
+            this.$router.push('/').then(() => {
+              // Forza la ricarica della pagina
+              window.location.reload();
+            });
+          } else {
+            this.$router.push('/admin').then(() => {
+              // Forza la ricarica della pagina
+              window.location.reload();
+            });
+          }
+
         } else {
           // Se l'autenticazione non ha avuto successo, mostra un messaggio di errore
           alert('Email o password non corretti');

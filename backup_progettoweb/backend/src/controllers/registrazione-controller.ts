@@ -7,7 +7,7 @@ export async function registraUtente(req: Request, res: Response) {
 
   try {
     if (!nome || !cognome || !email || !password) {
-      return res.json({ success: false, message: 'Per favore, compila tutti i campi del modulo' });
+      return res.json({ success: false, message: 'Compila tutti i campi del modulo' });
     }
 
     const hashedPassword = createHash('sha512').update(password).digest('hex').substring(0, 45);
