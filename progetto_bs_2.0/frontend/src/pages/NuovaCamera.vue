@@ -2,7 +2,7 @@
   <div class="container">
     <div class="form-container">
       <h2>Crea una Nuova Stanza</h2>
-      <form @submit.prevent="createRoom">
+      <form @submit.prevent="createRoom" enctype="multipart/form-data">
         <div>
           <label for="nomecamera">Nome Stanza:</label>
           <input type="text" id="nomecamera" v-model="camera.nomecamera" />
@@ -20,8 +20,15 @@
           <textarea id="descrizione" v-model="camera.descrizione"></textarea>
         </div>
         <div>
-          <label for="immagini">Immagini:</label>
-          <input type="file" id="immagini" name="immagini" ref="immagini" multiple @change="handleImageChange" />
+          <div>
+            <label for="immagine1">Immagine 1:</label>
+            <input type="file" id="immagine1" name="immagine1" ref="immagine1" @change="handleImageChange(1, $event)" />
+          </div>
+          
+          <div>
+            <label for="immagine2">Immagine 2:</label>
+            <input type="file" id="immagine2" name="immagine2" ref="immagine2" @change="handleImageChange(2, $event)" />
+          </div>
         </div>
 
         <!-- Show selected images -->
@@ -56,31 +63,34 @@ export default defineComponent({
 
   methods: {
     async createRoom() {
-      this.error = '';
-      if (!this.camera.nomecamera || !this.camera.postiletto || !this.camera.prezzonotte) {
-        this.error = 'Per favore, compila tutti i campi del modulo';
-        return;
+    this.error = '';
+    if (!this.camera.nomecamera || !this.camera.postiletto || !this.camera.prezzonotte) {
+      this.error = 'Per favore, compila tutti i campi del modulo';
+      return;
+    }
+
+    this.isLoading = true;
+
+    try {
+      const formData = new FormData();
+      formData.append('nomecamera', this.camera.nomecamera);
+      formData.append('postiletto', String(this.camera.postiletto));
+      formData.append('prezzonotte', String(this.camera.prezzonotte));
+      formData.append('descrizione', this.camera.descrizione);
+
+      // Aggiungi le immagini al FormData solo se sono presenti
+      if (this.camera.imgcamera1) {
+        formData.append('imgcamera1', this.camera.imgcamera1);
+      }
+      if (this.camera.imgcamera2) {
+        formData.append('imgcamera2', this.camera.imgcamera2);
       }
 
-      this.isLoading = true;
-
-      try {
-        const formData = new FormData();
-        formData.append('nomecamera', this.camera.nomecamera);
-        formData.append('postiletto', String(this.camera.postiletto));
-        formData.append('prezzonotte', String(this.camera.prezzonotte));
-        formData.append('descrizione', this.camera.descrizione);
-
-        // Aggiungi tutte le immagini al FormData
-        for (const immagine of this.immagini) {
-          formData.append('immagini', immagine);
-        }
-
-        const response = await axios.post('/api/admin/nuova-camera', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
+      const response = await axios.post('/api/admin/nuova-camera', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
         if (response.data.success) {
           alert('Camera creata con successo');
@@ -97,9 +107,18 @@ export default defineComponent({
     },
 
 
-    handleImageChange(event: any) {
-      this.immagini = event.target.files;
-    },
+    handleImageChange(imageNumber: number, event: any) {
+    const image = event.target.files[0];
+
+    // Assegna l'immagine alla variabile corrispondente in base al numero
+    if (imageNumber === 1) {
+      this.camera.imgcamera1 = image;
+    } else if (imageNumber === 2) {
+      this.camera.imgcamera2 = image;
+    }
+
+    // Puoi anche gestire l'anteprima dell'immagine se necessario
+  },
 
     createObjectURL(file: File): string {
       if ('URL' in window) {

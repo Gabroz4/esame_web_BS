@@ -22,11 +22,34 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const camereController = __importStar(require("../controllers/camere-controller"));
+const multer_1 = __importDefault(require("multer"));
 const router = (0, express_1.Router)();
+// Configurazione del middleware di caricamento di file
+const storage = multer_1.default.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../../public/img');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname);
+    },
+});
+const upload = (0, multer_1.default)({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        // Personalizza la logica di filtraggio se necessario
+        cb(null, true);
+    },
+}).fields([
+    { name: 'imgcamera1', maxCount: 1 },
+    { name: 'imgcamera2', maxCount: 1 },
+]);
 router.get("/api/camere", camereController.allRooms);
 router.get("/api/camere/:nomecamera", camereController.oneRoom);
-router.post("/api/admin/nuova-camera", camereController.creaStanza);
+router.post('/api/admin/nuova-camera', upload, camereController.creaStanza);
 exports.default = router;

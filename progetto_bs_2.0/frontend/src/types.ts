@@ -4,10 +4,8 @@ export interface Camera {
     prezzonotte: number;
     descrizione: string;
     isfull: boolean;
-    imgcamera1: string;
-    imgcamera2: string;
-    immagini: File[];
-    immaginiBase64: string[];  // Aggiunto campo per le immagini in formato base64
+    imgcamera1: File | null;
+    imgcamera2: File | null; 
 }
 
 export interface User {
