@@ -25,8 +25,9 @@
         </div>
 
         <!-- Show selected images -->
-        <div v-for="(immagine, index) in camera.immagini" :key="index">
-          <img :src="createObjectURL(immagine)" alt="Immagine" style="max-width: 100px; max-height: 100px; margin-right: 10px;" />
+        <div v-for="(immagine, index) in immagini" :key="index">
+          <img :src="createObjectURL(immagine)" alt="Immagine"
+            style="max-width: 100px; max-height: 100px; margin-right: 10px;" />
         </div>
 
         <div>
