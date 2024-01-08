@@ -83,14 +83,14 @@ export default defineComponent({
         });
 
         if (response.data.success) {
-          alert('Stanza creata con successo');
+          alert('Camera creata con successo');
           // Opzionalmente, puoi reindirizzare l'utente o eseguire altre azioni
         } else {
-          this.error = 'Errore durante la creazione della stanza - frontend';
+          this.error = 'Errore durante la creazione della camera';
         }
       } catch (error) {
-        console.error('Si è verificato un errore durante la creazione della stanza:', error);
-        this.error = 'Si è verificato un errore durante la creazione della stanza. Per favore, riprova più tardi.';
+        console.error('Si è verificato un errore durante la creazione della camera:', error);
+        this.error = 'Si è verificato un errore durante la creazione della camera.';
       } finally {
         this.isLoading = false;
       }
