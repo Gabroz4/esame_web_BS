@@ -6,6 +6,7 @@ export interface Camera {
     isfull: boolean;
     imgcamera1: string;
     imgcamera2: string;
+    immagini: File[];
     immaginiBase64: string[];  // Aggiunto campo per le immagini in formato base64
 }
 

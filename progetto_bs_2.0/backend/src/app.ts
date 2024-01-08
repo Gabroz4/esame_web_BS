@@ -8,13 +8,15 @@ import prenotazioneRouter from './routes/prenotazione-router';
 import profiloRouter from './routes/profilo-router'
 import adminRouter from './routes/profiloadmin-router'
 import path from 'path';
-
+import multer from 'multer';
+import { creaStanza } from './controllers/camere-controller';
 
 // Creazione di un'app Express
 const app: Express = express();
 // Porta su cui il server ascolterà
 const port: number = 3000;
-
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 // Middleware per la gestione delle route storiche
 app.use(history());
 
@@ -27,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/img', express.static('public/img'));
 app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
+app.use(upload.array('immagini', 2));
 // Usa bodyParser per analizzare il corpo delle richieste POST
 app.use(bodyParser.json());
 
@@ -37,6 +40,9 @@ app.use(prenotazioneRouter);
 app.use(profiloRouter);
 app.use(adminRouter);
 app.use(registrazioneRouter); // Usa il router di registrazione
+
+app.post('/api/admin/nuova-camera', upload.array('immagini', 2), creaStanza);
+
 
 // Gestione della risposta per le pagine non trovate
 app.use((req: Request, res: Response) => {

@@ -21,11 +21,11 @@
         </div>
         <div>
           <label for="immagini">Immagini:</label>
-          <input type="file" id="immagini" ref="immagini" multiple @change="handleImageChange" />
+          <input type="file" id="immagini" name="immagini" ref="immagini" multiple @change="handleImageChange" />
         </div>
 
         <!-- Show selected images -->
-        <div v-for="(immagine, index) in immagini" :key="index">
+        <div v-for="(immagine, index) in camera.immagini" :key="index">
           <img :src="createObjectURL(immagine)" alt="Immagine" style="max-width: 100px; max-height: 100px; margin-right: 10px;" />
         </div>
 
@@ -81,13 +81,11 @@ export default defineComponent({
           },
         });
 
-        console.log('Risposta del server:', response);
-
         if (response.data.success) {
           alert('Stanza creata con successo');
           // Opzionalmente, puoi reindirizzare l'utente o eseguire altre azioni
         } else {
-          this.error = 'Errore durante la creazione della stanza';
+          this.error = 'Errore durante la creazione della stanza - frontend';
         }
       } catch (error) {
         console.error('Si è verificato un errore durante la creazione della stanza:', error);
@@ -97,6 +95,7 @@ export default defineComponent({
       }
     },
 
+
     handleImageChange(event: any) {
       this.immagini = event.target.files;
     },
@@ -105,7 +104,6 @@ export default defineComponent({
       if ('URL' in window) {
         return URL.createObjectURL(file);
       } else {
-        // Fallback se 'URL' non è definito (ad esempio, in ambienti non browser)
         const reader = new FileReader();
         const dataURL = ref<string | null>(null);
 

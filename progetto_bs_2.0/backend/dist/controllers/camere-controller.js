@@ -47,27 +47,36 @@ function oneRoom(req, res) {
 exports.oneRoom = oneRoom;
 function creaStanza(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { nomecamera, postiletto, prezzonotte, descrizione, imgcamera1, imgcamera2 } = req.body;
+        const { nomecamera, postiletto, prezzonotte, descrizione } = req.body;
+        // Verifica se req.files è un oggetto e se il campo immagini esiste
+        const imgcamera1 = (req.files && 'immagini' in req.files) ? req.files['immagini'][0] : undefined;
+        // Verifica se req.files è un oggetto e se il campo imgcamera2 esiste
+        const imgcamera2 = (req.files && 'imgcamera2' in req.files) ? req.files['imgcamera2'][0] : undefined;
+        console.log('Contenuto di req.files:', req.files);
+        console.log('Contenuto di imgcamera1:', imgcamera1);
         try {
             if (!nomecamera || !postiletto || !prezzonotte) {
                 return res.json({ success: false, message: 'Compila tutti i campi del modulo' });
             }
             const query = 'INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?, ?, ?)';
-            const [results] = yield db_1.connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, imgcamera1, imgcamera2]);
+            const [results] = yield db_1.connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, (imgcamera1 === null || imgcamera1 === void 0 ? void 0 : imgcamera1.originalname) || null, (imgcamera2 === null || imgcamera2 === void 0 ? void 0 : imgcamera2.originalname) || null]);
             // Salva le immagini nella cartella public/img
             if (imgcamera1) {
-                const img1Path = path_1.default.join(__dirname, '../../public/img', imgcamera1);
-                fs_1.default.writeFileSync(img1Path, Buffer.from(imgcamera1, 'base64'));
+                console.log('nell\'if imgcamera1');
+                const img1Path = path_1.default.join(__dirname, '../../public/img', imgcamera1.originalname);
+                fs_1.default.writeFileSync(img1Path, imgcamera1.buffer);
+                console.log('Percorso immagine 1:', img1Path);
+                console.log('Contenuto immagine 1:', imgcamera1);
             }
             if (imgcamera2) {
-                const img2Path = path_1.default.join(__dirname, '../../public/img', imgcamera2);
-                fs_1.default.writeFileSync(img2Path, Buffer.from(imgcamera2, 'base64'));
+                const img2Path = path_1.default.join(__dirname, '../../public/img', imgcamera2.originalname);
+                fs_1.default.writeFileSync(img2Path, imgcamera2.buffer);
             }
             res.json({ success: true, message: 'Stanza creata con successo' });
         }
         catch (err) {
             console.error('Errore nella query al database:', err);
-            res.json({ success: false, message: 'Errore durante la creazione della stanza' });
+            res.json({ success: false, message: 'Errore durante la creazione della stanza - backend' });
         }
     });
 }
