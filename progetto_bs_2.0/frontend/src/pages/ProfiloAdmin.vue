@@ -9,11 +9,11 @@
 
     <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
       <div v-if="prenotazione.email == emailSelezionata">
-        <p><strong>Nome Utente:</strong> {{ prenotazione.id }}</p>
-        <p><strong>Email Utente:</strong> {{ prenotazione.email }}</p>
-        <p><strong>Camera:</strong> {{ prenotazione.nomecamera }}</p>
-        <p><strong>Data Inizio:</strong> {{ prenotazione.datainizio }}</p>
-        <p><strong>Data Fine:</strong> {{ prenotazione.datafine }}</p>
+        <p>ID Prenotazione: {{ prenotazione.id }}</p>
+        <p>E-mail: {{ prenotazione.email }}</p>
+        <p>Camera: {{ prenotazione.nomecamera }}</p>
+        <p>Data Inizio: {{ prenotazione.datainizio }}</p>
+        <p>Data Fine: {{ prenotazione.datafine }}</p>
         <button @click="eliminaPrenotazione(prenotazione.id)">Elimina Prenotazione</button>
       </div>
     </div>
