@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS `chaletalpi`.`camere` (
   `postiletto` INT NOT NULL,
   `prezzonotte` INT NOT NULL,
   `descrizione` TEXT,
-  `imgcamera1` VARCHAR(255),
-  `imgcamera2` VARCHAR(255),
+  `imgcamera1` TEXT,
+  `imgcamera2` TEXT,
   PRIMARY KEY (`nomecamera`)
 ) ENGINE = InnoDB;
 -- -----------------------------------------------------

@@ -7,6 +7,7 @@ import history from 'connect-history-api-fallback';
 import prenotazioneRouter from './routes/prenotazione-router';
 import profiloRouter from './routes/profilo-router'
 import path from 'path';
+import adminRouter from './routes/admin-router'
 
 
 // Creazione di un'app Express
@@ -33,7 +34,8 @@ app.use(camereRouter);
 app.use(userRouter);
 app.use(prenotazioneRouter);
 app.use(profiloRouter);
-app.use(registrazioneRouter); // Usa il router di registrazione
+app.use(registrazioneRouter);
+app.use(adminRouter);
 
 // Gestione della risposta per le pagine non trovate
 app.use((req: Request, res: Response) => {

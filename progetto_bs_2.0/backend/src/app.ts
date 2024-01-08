@@ -6,6 +6,7 @@ import registrazioneRouter from './routes/registrazione-router'; // Importa il r
 import history from 'connect-history-api-fallback';
 import prenotazioneRouter from './routes/prenotazione-router';
 import profiloRouter from './routes/profilo-router'
+import adminRouter from './routes/profiloadmin-router'
 import path from 'path';
 
 
@@ -22,7 +23,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware per la gestione delle route statiche
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.use('/img', express.static('public/img'));
 app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
 // Usa bodyParser per analizzare il corpo delle richieste POST
@@ -33,6 +35,7 @@ app.use(camereRouter);
 app.use(userRouter);
 app.use(prenotazioneRouter);
 app.use(profiloRouter);
+app.use(adminRouter);
 app.use(registrazioneRouter); // Usa il router di registrazione
 
 // Gestione della risposta per le pagine non trovate

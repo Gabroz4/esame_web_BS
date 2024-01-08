@@ -1,5 +1,7 @@
-import { Request, Response } from "express"
-import { connection } from "../utils/db"
+import { Request, Response } from "express";
+import { connection } from "../utils/db";
+import fs from "fs";
+import path from "path";
 
 export async function allRooms(req: Request, res: Response) {
   connection.execute(
@@ -44,6 +46,17 @@ export async function creaStanza(req: Request, res: Response) {
 
     const query = 'INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?, ?, ?)';
     const [results] = await connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, imgcamera1, imgcamera2]);
+
+    // Salva le immagini nella cartella public/img
+    if (imgcamera1) {
+      const img1Path = path.join(__dirname, '../../public/img', imgcamera1);
+      fs.writeFileSync(img1Path, Buffer.from(imgcamera1, 'base64'));
+    }
+
+    if (imgcamera2) {
+      const img2Path = path.join(__dirname, '../../public/img', imgcamera2);
+      fs.writeFileSync(img2Path, Buffer.from(imgcamera2, 'base64'));
+    }
 
     res.json({ success: true, message: 'Stanza creata con successo' });
   } catch (err) {

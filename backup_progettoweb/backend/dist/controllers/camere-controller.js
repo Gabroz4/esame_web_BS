@@ -42,13 +42,13 @@ function oneRoom(req, res) {
 exports.oneRoom = oneRoom;
 function creaStanza(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { nomecamera, postiletto, prezzonotte, descrizione } = req.body;
+        const { nomecamera, postiletto, prezzonotte, descrizione, imgcamera1, imgcamera2 } = req.body;
         try {
             if (!nomecamera || !postiletto || !prezzonotte) {
                 return res.json({ success: false, message: 'Compila tutti i campi del modulo' });
             }
-            const query = 'INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?)';
-            const [results] = yield db_1.connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione]);
+            const query = 'INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?, ?, ?)';
+            const [results] = yield db_1.connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, imgcamera1, imgcamera2]);
             res.json({ success: true, message: 'Stanza creata con successo' });
         }
         catch (err) {

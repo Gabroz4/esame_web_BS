@@ -12,6 +12,7 @@ const connect_history_api_fallback_1 = __importDefault(require("connect-history-
 const prenotazione_router_1 = __importDefault(require("./routes/prenotazione-router"));
 const profilo_router_1 = __importDefault(require("./routes/profilo-router"));
 const path_1 = __importDefault(require("path"));
+const admin_router_1 = __importDefault(require("./routes/admin-router"));
 // Creazione di un'app Express
 const app = (0, express_1.default)();
 // Porta su cui il server ascolterà
@@ -31,7 +32,8 @@ app.use(camere_router_1.default);
 app.use(user_router_1.default);
 app.use(prenotazione_router_1.default);
 app.use(profilo_router_1.default);
-app.use(registrazione_router_1.default); // Usa il router di registrazione
+app.use(registrazione_router_1.default);
+app.use(admin_router_1.default);
 // Gestione della risposta per le pagine non trovate
 app.use((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
