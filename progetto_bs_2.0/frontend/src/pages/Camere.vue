@@ -3,13 +3,16 @@
     <!-- Se la camera esiste, mostra i suoi dettagli -->
     <div v-if="camera">
       <h2>Camera {{ camera.nomecamera }}</h2>
+      <p>{{ camera.descrizione }}</p>
       <p>Prezzo a notte: {{ camera.prezzonotte }}€</p>
       <p>Posti letto: {{ camera.postiletto }}</p>
       <img :src="'/img/' + camera.imgcamera1" alt="" />
     </div>
 
     <!-- Seleziona date prenotazione -->
+    <p>Data inizio:</p>
     <input type="date" name="data inizio" v-model="dataInizio">
+    <p>Data fine:</p>
     <input type="date" name="data fine" v-model="dataFine">
 
     <!-- Se il numero di giorni e il prezzo totale sono noti, visualizza i dettagli della prenotazione -->

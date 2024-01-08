@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eliminaPrenotazione = exports.fetchPrenotazioni = void 0;
+exports.eliminaCamera = exports.eliminaPrenotazione = exports.fetchCamere = exports.fetchPrenotazioni = void 0;
 const db_1 = require("../utils/db");
 function fetchPrenotazioni(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -25,6 +25,20 @@ function fetchPrenotazioni(req, res) {
     });
 }
 exports.fetchPrenotazioni = fetchPrenotazioni;
+function fetchCamere(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const query = 'SELECT * FROM camere';
+            const [results] = yield db_1.connection.promise().query(query);
+            res.json(results);
+        }
+        catch (error) {
+            console.error('Errore nella query al database:', error);
+            res.status(500).json({ success: false, message: 'Errore durante il recupero delle camere' });
+        }
+    });
+}
+exports.fetchCamere = fetchCamere;
 function eliminaPrenotazione(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const prenotazioneId = req.params.id;
@@ -40,3 +54,18 @@ function eliminaPrenotazione(req, res) {
     });
 }
 exports.eliminaPrenotazione = eliminaPrenotazione;
+function eliminaCamera(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const nomeCamera = req.params.nomecamera;
+        try {
+            const query = 'DELETE FROM camere WHERE nomecamera = ?';
+            yield db_1.connection.promise().query(query, [nomeCamera]);
+            res.json({ success: true, message: 'Camera eliminata con successo' });
+        }
+        catch (error) {
+            console.error('Errore nella query al database:', error);
+            res.status(500).json({ success: false, message: 'Errore durante l\'eliminazione della camera' });
+        }
+    });
+}
+exports.eliminaCamera = eliminaCamera;

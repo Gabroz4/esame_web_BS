@@ -27,5 +27,7 @@ const express_1 = require("express");
 const profiloController = __importStar(require("../controllers/profiloadmin-controller"));
 const router = (0, express_1.Router)();
 router.get('/api/prenotazioni', profiloController.fetchPrenotazioni);
+router.get('/api/camere', profiloController.fetchCamere);
 router.delete('/api/prenotazioni/:id', profiloController.eliminaPrenotazione);
+router.delete('/api/camere/:nomecamera', profiloController.eliminaCamera);
 exports.default = router;
