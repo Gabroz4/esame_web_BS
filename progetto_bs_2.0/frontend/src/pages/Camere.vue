@@ -33,15 +33,15 @@ import { Camera } from "../types";
 
 export default defineComponent({
   data() {
-    // Inizializza le variabili di stato del componente
+    //  Inizializza le variabili di stato del componente
     return {
-      camera: null as Camera | null, // Informazioni sulla camera selezionata
-      dataInizio: null as string | null, // Data di inizio della prenotazione
-      dataFine: null as string | null, // Data di fine della prenotazione
+      camera: null as Camera | null, //camera selezionata
+      dataInizio: null as string | null,
+      dataFine: null as string | null, 
       prezzoTotale: null as number | null, // Prezzo totale della prenotazione
       userToken: sessionStorage.getItem('userToken'), // Token dell'utente
       emailToken: sessionStorage.getItem('emailToken'), // Email dell'utente
-      errorMessage: '' as string, // Messaggio di errore
+      errorMessage: '' as string,
     };
   },
   computed: {
