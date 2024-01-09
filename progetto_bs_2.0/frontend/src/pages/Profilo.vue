@@ -8,14 +8,15 @@
     </div>
 
     <h2>Prenotazioni</h2>
-    <ul v-for="prenotazione in prenotazioni" :key="prenotazione.id">
+    <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
+    <ul>
       <li>Id prenotazione: {{ prenotazione.id }}</li>
       <li>Camera: {{ prenotazione.nomecamera }}</li>
       <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
       <li>Totale: {{ prenotazione.prezzo }}€</li>
       <li>----------------------------------------</li>
     </ul>
-
+  </div>
     <button @click="logout">Logout</button>
   </div>
 </template>
@@ -41,8 +42,6 @@ export default defineComponent({
       });
     },
     fetchProfileAndPrenotazioni() {
-      //const emailToken = sessionStorage.getItem('emailToken');
-
       if (!this.emailToken) {
         console.error('Token dell\'utente non presente');
         return;
@@ -59,7 +58,7 @@ export default defineComponent({
         });
     },
     formatDates(dateString: string) {
-      // Formatta la data nel formato desiderato (es. '2024-01-22')
+      //formatta la data
       const date = new Date(dateString);
       return date.toISOString().split('T')[0];
     },

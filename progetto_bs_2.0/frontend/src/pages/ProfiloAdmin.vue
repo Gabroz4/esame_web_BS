@@ -1,43 +1,53 @@
 <template>
-  <div class="admin-profile">
+  <div class="profile">
     <h1>Profilo Amministratore</h1>
 
-    <select name="utenti" id="utenti-select" v-model="emailSelezionata">
-      <option value="" disabled selected>--Seleziona prenotazione--</option>
-      <option v-for="email in univoca()" :key="email" :value="email">{{ email }}</option>
-    </select>
+    <!-- Seleziona Utente -->
+    <div class="select-container">
+      <label for="utenti-select">Seleziona Prenotazione:</label>
+      <select name="utenti" id="utenti-select" v-model="emailSelezionata">
+        <option value="" disabled selected>-- Scegli un utente --</option>
+        <option v-for="email in univoca()" :key="email" :value="email">{{ email }}</option>
+      </select>
+    </div>
 
+    <!-- Visualizza Prenotazioni -->
     <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
-      <div v-if="prenotazione.email == emailSelezionata">
-        <p>ID Prenotazione: {{ prenotazione.id }}</p>
+      <div v-if="prenotazione.email == emailSelezionata" class="prenotazione-details">
+        <h3>Prenotazione #{{ prenotazione.id }}</h3>
         <p>E-mail: {{ prenotazione.email }}</p>
         <p>Camera: {{ prenotazione.nomecamera }}</p>
         <p>Data Inizio: {{ prenotazione.datainizio }}</p>
         <p>Data Fine: {{ prenotazione.datafine }}</p>
-        <button @click="eliminaPrenotazione(prenotazione.id)">Elimina Prenotazione</button>
+        <button @click="eliminaPrenotazione(prenotazione.id)" class="delete-btn">Elimina Prenotazione</button>
       </div>
     </div>
 
-    <select name="camere" id="camere-select" v-model="cameraSelezionata">
-      <option value="" disabled selected>--Seleziona camera--</option>
-      <option v-for="camera in cameraUnivoca()" :key="camera" :value="camera">{{ camera }}</option>
-    </select>
+    <!-- Seleziona Camera -->
+    <div class="select-container">
+      <label for="camere-select">Seleziona Camera:</label>
+      <select name="camere" id="camere-select" v-model="cameraSelezionata">
+        <option value="" disabled selected>-- Scegli una camera --</option>
+        <option v-for="camera in cameraUnivoca()" :key="camera" :value="camera">{{ camera }}</option>
+      </select>
+    </div>
 
-    <div v-for="camera in camere" :key="camera.nomecamera" class="prenotazione">
-      <div v-if="camera.nomecamera == cameraSelezionata">
+    <!-- Visualizza Dettagli Camera -->
+    <div v-for="camera in camere" :key="camera.nomecamera" class="camera-details">
+      <div v-if="camera.nomecamera == cameraSelezionata" class="camera-details-inner">
+        <h3>Dettagli Camera</h3>
         <p>Camera: {{ camera.nomecamera }}</p>
-        <p>Posti letto: {{ camera.postiletto }}</p>
-        <p>Prezzo a notte: {{ camera.prezzonotte }}</p>
+        <p>Posti Letto: {{ camera.postiletto }}</p>
+        <p>Prezzo a Notte: {{ camera.prezzonotte }}</p>
         <p>Descrizione: {{ camera.descrizione }}</p>
-        <button @click="eliminaCamera(camera.nomecamera)">Elimina Camera</button>
-        <button @click="modificaCamera(camera.nomecamera)">Modifica Camera</button>
+        <button @click="eliminaCamera(camera.nomecamera)" class="delete-btn">Elimina Camera</button>
+        <button @click="modificaCamera(camera.nomecamera)" class="edit-btn">Modifica Camera</button>
       </div>
     </div>
 
-    <!-- Modulo di modifica -->
-    <div v-if="modificaAttiva">
+    <!-- Modulo di Modifica Camera -->
+    <div v-if="modificaAttiva" class="edit-form">
       <h2>Modifica Camera</h2>
-      
       <label for="postiletto">Posti Letto:</label>
       <input type="number" v-model="cameraInModifica.postiletto" />
 
@@ -47,12 +57,14 @@
       <label for="descrizione">Descrizione:</label>
       <textarea v-model="cameraInModifica.descrizione"></textarea>
 
-      <button @click="salvaModificheCamera">Salva Modifiche</button>
+      <button @click="salvaModificheCamera" class="save-btn">Salva Modifiche</button>
     </div>
 
-
-    <button @click="logout">Logout</button>
-    <router-link to="/admin/nuova-camera">Inserisci Nuova Camera</router-link>
+    <!-- Altri Controlli -->
+    <div class="controls">
+      <button @click="logout" class="logout-btn">Logout</button>
+      <router-link to="/admin/nuova-camera" class="link-btn">Inserisci Nuova Camera</router-link>
+    </div>
   </div>
 </template>
 
