@@ -90,4 +90,4 @@ export default defineComponent({
 });
 </script>
 
-<style src="../style.css" lang="css"></style>
+<style src="../style.scss" lang="css"></style>
