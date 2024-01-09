@@ -50,3 +50,18 @@ export async function eliminaCamera(req: Request, res: Response) {
         res.status(500).json({ success: false, message: 'Errore durante l\'eliminazione della camera' });
     }
 }
+
+export async function modificaCamera(req: Request, res: Response) {
+    const nomeCamera = req.params.nomecamera;
+    const { postiletto, prezzonotte, descrizione } = req.body;
+  
+    try {
+      const query = 'UPDATE camere SET postiletto = ?, prezzonotte = ?, descrizione = ? WHERE nomecamera = ?';
+      await connection.promise().query(query, [postiletto, prezzonotte, descrizione, nomeCamera]);
+  
+      res.json({ success: true, message: 'Camera modificata con successo' });
+    } catch (error) {
+      console.error('Errore nella query al database:', error);
+      res.status(500).json({ success: false, message: 'Errore durante la modifica della camera' });
+    }
+  };

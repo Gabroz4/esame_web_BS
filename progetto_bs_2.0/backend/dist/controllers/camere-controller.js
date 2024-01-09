@@ -61,21 +61,45 @@ function creaStanza(req, res) {
             const query = 'INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?, ?, ?)';
             const [results] = yield db_1.connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, (imgcamera1 === null || imgcamera1 === void 0 ? void 0 : imgcamera1.originalname) || null, (imgcamera2 === null || imgcamera2 === void 0 ? void 0 : imgcamera2.originalname) || null]);
             // Salva le immagini nella cartella public/img
-            if (imgcamera1) {
+            if (imgcamera1 && imgcamera1.buffer) {
                 const img1Path = path_1.default.join(__dirname, '../../public/img', imgcamera1.originalname);
-                yield fs_1.default.promises.writeFile(img1Path, imgcamera1.buffer, 'binary');
-                console.log('Percorso immagine 1:', img1Path);
-                console.log('Contenuto immagine 1:', imgcamera1);
+                try {
+                    yield fs_1.default.promises.writeFile(img1Path, imgcamera1.buffer.toString('binary'), 'binary');
+                    console.log('File written successfully:', img1Path);
+                }
+                catch (error) {
+                    console.error('Error writing file:', error);
+                    throw error;
+                }
             }
-            if (imgcamera2) {
+            // Save image 2
+            if (imgcamera2 && imgcamera2.buffer) {
                 const img2Path = path_1.default.join(__dirname, '../../public/img', imgcamera2.originalname);
-                yield fs_1.default.promises.writeFile(img2Path, imgcamera2.buffer, 'binary');
+                try {
+                    yield fs_1.default.promises.writeFile(img2Path, imgcamera2.buffer.toString('binary'), 'binary');
+                    console.log('File written successfully:', img2Path);
+                }
+                catch (error) {
+                    console.error('Error writing file:', error);
+                    throw error;
+                }
             }
             res.json({ success: true, message: 'Stanza creata con successo' });
         }
         catch (error) {
             console.error('Errore durante la gestione della richiesta:', error);
-            res.status(500).json({ success: false, message: 'Errore interno del server durante la creazione della stanza' });
+            // Log dettagli sull'errore
+            if (error instanceof Error) {
+                console.error('Tipo di errore:', error.name);
+                console.error('Messaggio di errore:', error.message);
+                console.error('Stack trace:', error.stack);
+            }
+            // Se è un errore legato a fs.promises.writeFile, aggiungi un log specifico
+            if (error.code === 'ERR_INVALID_ARG_TYPE') {
+                console.error('Errore durante la scrittura del file:', error.message);
+            }
+            // Invia una risposta dettagliata al client
+            res.status(500).json({ success: false, message: 'Errore interno del server durante la creazione della stanza', errorDetails: error.message });
         }
     });
 }

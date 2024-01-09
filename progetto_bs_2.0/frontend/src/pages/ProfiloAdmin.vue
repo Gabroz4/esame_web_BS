@@ -30,7 +30,24 @@
         <p>Prezzo a notte: {{ camera.prezzonotte }}</p>
         <p>Descrizione: {{ camera.descrizione }}</p>
         <button @click="eliminaCamera(camera.nomecamera)">Elimina Camera</button>
+        <button @click="modificaCamera(camera.nomecamera)">Modifica Camera</button>
       </div>
+    </div>
+
+    <!-- Modulo di modifica -->
+    <div v-if="modificaAttiva">
+      <h2>Modifica Camera</h2>
+      
+      <label for="postiletto">Posti Letto:</label>
+      <input type="number" v-model="cameraInModifica.postiletto" />
+
+      <label for="prezzonotte">Prezzo a Notte:</label>
+      <input type="number" v-model="cameraInModifica.prezzonotte" />
+
+      <label for="descrizione">Descrizione:</label>
+      <textarea v-model="cameraInModifica.descrizione"></textarea>
+
+      <button @click="salvaModificheCamera">Salva Modifiche</button>
     </div>
 
 
@@ -50,7 +67,16 @@ export default defineComponent({
       prenotazioni: [] as Prenotazione[],
       camere: [] as Camera[],
       emailSelezionata: null as string | null,
-      cameraSelezionata: null as string | null
+      cameraSelezionata: null as string | null,
+
+      modificaAttiva: false,
+      cameraInModifica: {
+        nomecamera: '',
+        postiletto: 0,
+        prezzonotte: 0,
+        descrizione: ''
+      } as Camera
+
     };
   },
 
@@ -96,6 +122,31 @@ export default defineComponent({
             this.fetchCamere();
           } else {
             alert('Errore durante l\'eliminazione della camera');
+          }
+        })
+        .catch(error => console.error(error));
+    },
+    modificaCamera(nomecamera: string) {
+      // Trova la camera da modificare
+      const cameraDaModificare = this.camere.find(camera => camera.nomecamera === nomecamera);
+
+      // Se la camera è trovata, abilita la modalità di modifica
+      if (cameraDaModificare) {
+        this.modificaAttiva = true;
+        this.cameraInModifica = { ...cameraDaModificare };
+      } else {
+        alert('Camera non trovata');
+      }
+    },
+    salvaModificheCamera() {
+      axios.put(`/api/camere/${this.cameraInModifica.nomecamera}`, this.cameraInModifica)
+        .then(response => {
+          if (response.data.success) {
+            alert('Camera modificata con successo');
+            this.fetchCamere();
+            this.modificaAttiva = false; // Disabilita la modalità di modifica
+          } else {
+            alert('Errore durante la modifica della camera');
           }
         })
         .catch(error => console.error(error));

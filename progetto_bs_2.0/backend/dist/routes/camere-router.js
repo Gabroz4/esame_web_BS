@@ -33,10 +33,10 @@ const router = (0, express_1.Router)();
 // Configurazione del middleware di caricamento di file
 const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../../public/img');
+        cb(null, 'C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progetto_bs_2.0/backend/public/img');
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname);
+        cb(null, file.originalname);
     },
 });
 const upload = (0, multer_1.default)({
