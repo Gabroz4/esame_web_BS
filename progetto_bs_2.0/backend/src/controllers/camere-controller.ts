@@ -54,10 +54,10 @@ export async function creaStanza(req: Request, res: Response) {
     const [results] = await connection.promise().query(query, [nomecamera, postiletto, prezzonotte, descrizione, imgcamera1?.originalname || null, imgcamera2?.originalname || null]);
 
     // Salva le immagini nella cartella public/img
-    if (imgcamera1) {
+    if (imgcamera1 && imgcamera1.buffer) {
       const img1Path = path.join(__dirname, '../../public/img', imgcamera1.originalname);
       try {
-        await fs.promises.writeFile(img1Path, imgcamera1.buffer, 'binary');
+        await fs.promises.writeFile(img1Path, imgcamera1.buffer.toString('binary'), 'binary');
         console.log('File written successfully:', img1Path);
       } catch (error) {
         console.error('Error writing file:', error);
@@ -66,10 +66,10 @@ export async function creaStanza(req: Request, res: Response) {
     }
     
     // Save image 2
-    if (imgcamera2) {
+    if (imgcamera2 && imgcamera2.buffer) {
       const img2Path = path.join(__dirname, '../../public/img', imgcamera2.originalname);
       try {
-        await fs.promises.writeFile(img2Path, imgcamera2.buffer, 'binary');
+        await fs.promises.writeFile(img2Path, imgcamera2.buffer.toString('binary'), 'binary');
         console.log('File written successfully:', img2Path);
       } catch (error) {
         console.error('Error writing file:', error);

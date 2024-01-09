@@ -1,16 +1,12 @@
 import express, { Express, Request, Response } from 'express';
-import bodyParser from 'body-parser';
 import camereRouter from './routes/camere-router';
 import userRouter from './routes/user-router';
-import registrazioneRouter from './routes/registrazione-router'; // Importa il router di registrazione
+import registrazioneRouter from './routes/registrazione-router';
 import history from 'connect-history-api-fallback';
 import prenotazioneRouter from './routes/prenotazione-router';
 import profiloRouter from './routes/profilo-router'
 import adminRouter from './routes/profiloadmin-router'
 import path from 'path';
-import multer from 'multer';
-import { creaStanza } from './controllers/camere-controller';
-
 
 // Creazione di un'app Express
 const app: Express = express();
@@ -21,15 +17,12 @@ app.use(history());
 
 // Utilizzo di middleware per il parsing dei dati JSON e URL-encoded
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // Middleware per la gestione delle route statiche
-//app.use(express.static('public'));
+// app.use(express.static('public'));
 app.use('/img', express.static('public/img'));
 app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
-
-// Usa bodyParser per analizzare il corpo delle richieste POST
-app.use(bodyParser.json());
 
 // Usa i router per gestire le varie route
 app.use(camereRouter);
@@ -37,7 +30,7 @@ app.use(userRouter);
 app.use(prenotazioneRouter);
 app.use(profiloRouter);
 app.use(adminRouter);
-app.use(registrazioneRouter); // Usa il router di registrazione
+app.use(registrazioneRouter);
 
 // Gestione della risposta per le pagine non trovate
 app.use((req: Request, res: Response) => {
