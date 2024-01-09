@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div v-if="adminToken" class="adminprofile">
     <h1>Profilo Amministratore</h1>
 
     <!-- Seleziona Utente -->
@@ -80,6 +80,8 @@ export default defineComponent({
       camere: [] as Camera[],
       emailSelezionata: null as string | null,
       cameraSelezionata: null as string | null,
+
+      adminToken: sessionStorage.getItem('adminToken'),
 
       modificaAttiva: false,
       cameraInModifica: {

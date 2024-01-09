@@ -1,23 +1,22 @@
 <template>
-  <div class="profile">
+  <div class="adminprofile">
     <h1>Profilo Utente</h1>
     <div class="profile-info">
-      <p><strong>Nome:</strong> {{ user.nome }}</p>
-      <p><strong>Cognome:</strong> {{ user.cognome }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p>Nome: {{ user.nome }}</p>
+      <p>Cognome: {{ user.cognome }}</p>
+      <p>Email:{{ user.email }}</p>
     </div>
 
     <h2>Prenotazioni</h2>
     <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
-    <ul>
-      <li>Id prenotazione: {{ prenotazione.id }}</li>
-      <li>Camera: {{ prenotazione.nomecamera }}</li>
-      <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
-      <li>Totale: {{ prenotazione.prezzo }}€</li>
-      <li>----------------------------------------</li>
-    </ul>
-  </div>
-    <button @click="logout">Logout</button>
+      <ul>
+        <li>Id prenotazione: {{ prenotazione.id }}</li>
+        <li>Camera: {{ prenotazione.nomecamera }}</li>
+        <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
+        <li>Totale: {{ prenotazione.prezzo }}€</li>
+      </ul>
+    </div>
+    <button class="edit-btn" @click="logout">Logout</button>
   </div>
 </template>
 

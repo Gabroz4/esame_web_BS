@@ -89,5 +89,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style src="../style.scss" lang="css"></style>

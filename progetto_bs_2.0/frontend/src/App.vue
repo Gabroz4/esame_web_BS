@@ -34,10 +34,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.router-link-exact-active {
-  background-color: transparent;
-  color: #f0b31a;
-}
-</style>

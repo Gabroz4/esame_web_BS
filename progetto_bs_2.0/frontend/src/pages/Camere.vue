@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="camera">
     <!-- Se la camera esiste, mostra i suoi dettagli -->
     <div v-if="camera">
       <h2>Camera {{ camera.nomecamera }}</h2>
@@ -7,6 +7,7 @@
       <p>Prezzo a notte: {{ camera.prezzonotte }}€</p>
       <p>Posti letto: {{ camera.postiletto }}</p>
       <img :src="'/img/' + camera.imgcamera1" alt="" />
+      <img :src="'/img/' + camera.imgcamera2" alt="" />
     </div>
 
     <!-- Seleziona date prenotazione -->
@@ -18,7 +19,7 @@
     <!-- Se il numero di giorni e il prezzo totale sono noti, visualizza i dettagli della prenotazione -->
     <div v-if="numeroGiorni !== null && prezzoTot !== null">
       <p>Numero di giorni selezionati: {{ numeroGiorni }}</p>
-      <p>Prezzo totale: {{ prezzoTot }}</p>
+      <p>Prezzo totale: {{ prezzoTot }}€</p>
     </div>
 
     <!-- Conferma prenotazione -->
@@ -37,7 +38,7 @@ export default defineComponent({
     return {
       camera: null as Camera | null, //camera selezionata
       dataInizio: null as string | null,
-      dataFine: null as string | null, 
+      dataFine: null as string | null,
       prezzoTotale: null as number | null, // Prezzo totale della prenotazione
       userToken: sessionStorage.getItem('userToken'), // Token dell'utente
       emailToken: sessionStorage.getItem('emailToken'), // Email dell'utente

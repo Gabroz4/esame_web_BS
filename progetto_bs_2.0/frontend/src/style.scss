@@ -17,6 +17,61 @@ main > h3 {
   padding-right: 5%;
   text-align: center;
 }
+.camera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px;
+  background-color: #f4f4f4;
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #112830;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0b31a;
+    }
+  }
+
+  /* Additional styling for specific elements if needed */
+  img {
+    max-width: 30%;
+    margin-left: 10px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styles for the section with reservation details */
+  > div {
+    margin-top: 20px;
+  }
+}
 
 article.cameraprev {
   display: flex;
@@ -25,6 +80,7 @@ article.cameraprev {
   justify-content: space-between;
   padding-left: 5%;
   padding-right: 5%;
+  max-width: 70%;
 }
 
 article.cameraprev img {
@@ -50,6 +106,30 @@ article.cameraprev h3 {
   margin: 0;
 }
 
+.intro h3{
+  text-align: center;
+}
+
+
+.homepage {
+  padding-left: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  .link-btn {
+    background-color: #112830;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+}
+
 // Global Styles
 body {
   background-color: #e5e1da;
@@ -68,6 +148,105 @@ body {
   display: inline-block;
   justify-content: left;
   padding-left: 3px;
+}
+//Admin styles
+.adminprofile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  ul {
+    list-style: none;
+  }
+
+  .select-container {
+    margin-bottom: 20px;
+    label {
+      color: black;
+    }
+  }
+
+  .edit-form {
+    label {
+      color: black;
+    }
+  }
+
+  .prenotazione,
+  .camera-dettagli,
+  .edit-form {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .delete-btn,
+  .edit-btn,
+  .save-btn,
+  .logout-btn,
+  .link-btn {
+    background-color: #112830;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+}
+
+//nuovacamera styles
+.nuovacamera {
+  h2 {
+    font-size: large;
+  }
+
+  form {
+    div {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        height: 100px;
+      }
+
+      input[type="file"] {
+        margin-bottom: 10px;
+      }
+    }
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #112830;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+  }
 }
 
 // Header Styles
@@ -128,7 +307,7 @@ main {
 
 // Footer Styles
 footer {
-  background-color: #333;
+  background-color: #112830;
   color: #fff;
   text-align: center;
   padding: 10px;
@@ -173,8 +352,8 @@ article p {
 
 // Router Link Styles
 .router-link-exact-active {
-  color: rgb(219, 69, 83);
-  background-color: #fff;
+  background-color: transparent;
+  color: #f0b31a;
 }
 
 // Stili Aggiunti per Login.Vue
