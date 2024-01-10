@@ -45,7 +45,6 @@ img.logo {
     }
   }
 
-  /* Additional styling for specific elements if needed */
   img {
     max-width: 80%;
     margin-left: 2px;
@@ -55,7 +54,6 @@ img.logo {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
 
-  /* Styles for the section with reservation details */
   > div {
     margin-top: 10px;
   }
@@ -123,8 +121,6 @@ article.cameraprev h3 {
   }
 }
 
-// Stili Home.Vue
-
 * {
   margin: 0;
   padding: 0;
@@ -143,7 +139,6 @@ main > h3 {
   text-align: center;
 }
 
-// Header Styles
 header {
   background-color: #d5edef;
   color: #fff;
@@ -159,7 +154,6 @@ header {
   }
 }
 
-// Navigation Styles
 nav {
   background-color: #666;
   padding: 10px;
@@ -189,8 +183,6 @@ nav a {
   font-weight: bold;
 }
 
-
-// Main Styles
 main {
   max-width: 100%;
   margin: 0 auto;
@@ -200,7 +192,6 @@ main {
   align-items: center;
 }
 
-// Footer Styles
 footer {
   background-color: #112830;
   color: #fff;
@@ -208,7 +199,6 @@ footer {
   padding: 10px;
 }
 
-// Home Page Styles
 h2 {
   font-size: 1.8em;
   margin-bottom: 20px;
@@ -245,13 +235,11 @@ article p {
   margin-bottom: 10px;
 }
 
-// Router Link Styles
 .router-link-exact-active {
   background-color: transparent;
   color: #f0b31a;
 }
 
-// Stili Aggiunti per Login.Vue
 .form-container h2 {
   color: #fff;
   text-align: center;
@@ -492,9 +480,6 @@ input[type="submit"] {
   }
 }
 
-// Stili Aggiunti per Registrati.Vue
-// ... Puoi copiare e incollare gli stili per Registrati.Vue se necessario ...
-
 @media screen and (min-width: 768px) {
 
   .adminprofile .input-container{
@@ -576,8 +561,7 @@ input[type="submit"] {
         color: #112830;
       }
     }
-  
-    /* Additional styling for specific elements if needed */
+
     img {
       max-width: 30%;
       margin-left: 10px;
@@ -586,8 +570,7 @@ input[type="submit"] {
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
-  
-    /* Styles for the section with reservation details */
+
     > div {
       margin-top: 20px;
     }
@@ -654,8 +637,7 @@ input[type="submit"] {
       }
     }
   }
-  
-  // Global Styles
+
   body {
     background-color: #e5e1da;
     font-family: 'Arial', sans-serif;
@@ -674,7 +656,7 @@ input[type="submit"] {
     justify-content: left;
     padding-left: 3px;
   }
-  //Admin styles
+
   .adminprofile {
     max-width: 1200px;
     margin: 0 auto;

@@ -6,14 +6,13 @@
       <img class="home" :src="'/img/' + 'home.jpg'" alt="" />
       <div class="intro">
         <h3>Chi siamo - Benvenuti</h3>
-        <p>Situato tra le maestose vette montane, il Chalet delle Alpi è il rifugio perfetto per gli amanti della natura e
+        <p>Situato tra le maestose vette montane, lo Chalet delle Alpi è il rifugio perfetto per gli amanti della natura e
           delle atmosfere accoglienti. Immerso in uno scenario alpino incantevole, il nostro chalet offre una calda e
           autentica esperienza di montagna.</p>
         <h3>Camere uniche e confortevoli</h3>
         <p>Le nostre camere sono progettate con cura per garantire il massimo comfort durante il vostro soggiorno. Ogni
-          stanza è un rifugio accogliente, arredata con elementi tradizionali delle Alpi e dotata di moderni comfort.
-          Dalle
-          finestre potrete ammirare panorami mozzafiato delle vette circostanti e respirare l'aria fresca di montagna.</p>
+          stanza è un rifugio accogliente, arredato con elementi tradizionali delle Alpi e dotata di moderni comfort.
+          Dalle finestre potrete ammirare panorami mozzafiato delle vette circostanti e respirare l'aria fresca di montagna.</p>
       </div>
     </section>
     <h3>Le nostre Camere</h3>
