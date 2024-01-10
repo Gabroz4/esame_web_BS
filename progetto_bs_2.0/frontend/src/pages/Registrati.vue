@@ -45,14 +45,14 @@ export default defineComponent({
   methods: {
     //funzione per l'invio dei dati
     async submitForm() {
-      this.error = ''; //debugging
+      this.error = ''; //per debugging
       //se i campi obbligatori non sono stati inseriti
       if (!this.user.nome || !this.user.cognome || !this.user.email || !this.user.password) {
-        this.error = 'Per favore, compila tutti i campi del modulo';
+        this.error = 'Compila tutti i campi del modulo';
         return;
       }
 
-      this.isLoading = true;
+      this.isLoading = true; //evita doppi inserimenti accidentali
 
       try {
         //chiamata al backend con i dati da inserire del nuovo utente
@@ -63,13 +63,14 @@ export default defineComponent({
         //se la query ha avuto successo
         if (response.data.success) {
           alert('Registrazione avvenuta con successo');
+          //reindirizza
           this.$router.push('/login');
         } else {
           this.error = 'Errore durante la registrazione';
         }
       } catch (error) {
-        console.error('Si è verificato un errore durante la registrazione:', error);
-        this.error = 'Si è verificato un errore durante la registrazione. Per favore, riprova più tardi.';
+        console.error('Errore durante la registrazione:', error);
+        this.error = 'Errore durante la registrazione';
       } finally {
         this.isLoading = false;
       }

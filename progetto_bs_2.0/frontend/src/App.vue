@@ -30,11 +30,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   computed: {
-    //funzione per ottenere lo userToken
+    //chiede se esiste lo userToken
     isLoggedIn() {
       return sessionStorage.getItem('userToken') === 'IsLoggedIn';
     },
-    //funzione per ottenere l'adminToken
+    //chiede se esiste l'adminToken
     isAdmin() {
       return sessionStorage.getItem('adminToken') === 'Admin';
     }

@@ -41,7 +41,7 @@ export default defineComponent({
       prezzoTotale: null as number | null,
       userToken: sessionStorage.getItem('userToken'), //token dell'utente
       emailToken: sessionStorage.getItem('emailToken'), //token dell'email
-      errorMessage: '' as string, //debugging
+      error: '' as string, //debugging
     };
   },
   computed: {
@@ -78,17 +78,17 @@ export default defineComponent({
       }
       return null;
     },
-    //funzione per ottenere i dettagli della camera dato il nome
+    //funzione asincrona per ottenere i dettagli della camera dato il nome
     async unaCamera(): Promise<void> {
       try {
         const response = await axios.get("/api/camere/" + this.$route.params.nomecamera);
-        this.camera = response.data[0];
+        this.camera = response.data[0]; //assegna i valori della risposta a camera
       } catch (error) {
         console.error('Errore nella richiesta:', error);
-        this.errorMessage = 'Errore durante il recupero dei dettagli della camera';
+        this.error = 'Errore durante il recupero dei dettagli della camera';
       }
     },
-    //funzione per confermare la prenotazione
+    //funzione asincrona per confermare la prenotazione
     async confermaPrenotazione(): Promise<void> {
       if (!this.userToken) {
         alert('Per prenotare una camera, devi prima registrarti.');
@@ -105,13 +105,13 @@ export default defineComponent({
         return dataObj.toISOString().split('T')[0];
       }
 
-      const dataInizioFormatted = this.dataInizio ? aggiungiUnGiorno(this.dataInizio) : null;
-      const dataFineFormatted = this.dataFine ? aggiungiUnGiorno(this.dataFine) : null;
+      const nuovaDataInizio = this.dataInizio ? aggiungiUnGiorno(this.dataInizio) : null;
+      const nuovaDataFine = this.dataFine ? aggiungiUnGiorno(this.dataFine) : null;
 
       //corpo della richiesta da mandare al backend
       const requestBody = {
-        datainizio: dataInizioFormatted,
-        datafine: dataFineFormatted,
+        datainizio: nuovaDataInizio,
+        datafine: nuovaDataFine,
         prezzo: this.prezzoTotale,
         nomecamera: this.camera?.nomecamera,
         userToken: this.userToken,
@@ -125,9 +125,9 @@ export default defineComponent({
         if (response.data.success) {
           alert('Prenotazione inserita con successo');
         } else {
-          this.errorMessage = response.data.message;
-          if (this.errorMessage === 'La camera è già prenotata per le date selezionate') {
-            alert(this.errorMessage);
+          this.error = response.data.message;
+          if (this.error === 'La camera è già prenotata per le date selezionate') {
+            alert(this.error);
           } else {
             alert('Errore durante la conferma della prenotazione');
           }

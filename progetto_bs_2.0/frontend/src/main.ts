@@ -12,19 +12,18 @@ import Profilo from "./pages/Profilo.vue"
 import ProfiloAdmin from "./pages/ProfiloAdmin.vue"
 import NuovaCamera from "./pages/NuovaCamera.vue"
 
-//gestione delle route delle pagine vue
+//configurazione router pagine vue
 const router: Router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: Home },//alla pagina home è associato l'URL "/"
+    { path: "/", component: Home },
     { path: "/login", component: Login },
     { path: "/registrati", component: Registrati },
     { path: "/camere/:nomecamera", component: Camere },
     { path: "/profilo", component: Profilo },
     { path: "/admin", component: ProfiloAdmin },
     { path: "/admin/nuova-camera", component: NuovaCamera },
-    { path: "/:pathMatch(.*)*", component: NotFound },
-    
+    { path: "/:pathMatch(.*)*", component: NotFound }, //se non trova l'endpoint
   ]
 })
 

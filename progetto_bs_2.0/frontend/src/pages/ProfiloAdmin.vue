@@ -1,8 +1,8 @@
 <template>
-  <div v-if="adminToken" class="adminprofile">
+  <div v-if="adminToken" class="adminprofile"> <!--impedisce che un normale utente acceda alle funzion admin-->
     <h1>Profilo Amministratore</h1>
 
-    <!-- Seleziona Utente -->
+    <!-- seleziona utente -->
     <div class="select-container">
       <label for="utenti-select">Seleziona Prenotazione:</label>
       <select name="utenti" id="utenti-select" v-model="emailSelezionata">
@@ -11,7 +11,7 @@
       </select>
     </div>
 
-    <!-- Visualizza Prenotazioni -->
+    <!-- visualizza prenotazioni -->
     <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
       <div v-if="prenotazione.email == emailSelezionata" class="prenotazione-details">
         <h3>Prenotazione #{{ prenotazione.id }}</h3>
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <!-- Seleziona Camera -->
+    <!-- seleziona camera -->
     <div class="select-container">
       <label for="camere-select">Seleziona Camera:</label>
       <select name="camere" id="camere-select" v-model="cameraSelezionata">
@@ -32,7 +32,7 @@
       </select>
     </div>
 
-    <!-- Visualizza Dettagli Camera -->
+    <!-- visualizza dettagli camere -->
     <div v-for="camera in camere" :key="camera.nomecamera" class="camera-details">
       <div v-if="camera.nomecamera == cameraSelezionata" class="camera-details-inner">
         <h3>Dettagli Camera</h3>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <!-- Modulo di Modifica Camera -->
+    <!-- modifica camera -->
     <div v-if="modificaAttiva" class="edit-form">
       <h2>Modifica Camera</h2>
       <label for="postiletto">Posti Letto:</label>
@@ -60,7 +60,6 @@
       <button @click="salvaModificheCamera" class="save-btn">Salva Modifiche</button>
     </div>
 
-    <!-- Altri Controlli -->
     <div class="controls">
       <button @click="logout" class="logout-btn">Logout</button>
       <router-link to="/admin/nuova-camera" class="link-btn">Inserisci Nuova Camera</router-link>
@@ -83,7 +82,7 @@ export default defineComponent({
       adminToken: sessionStorage.getItem('adminToken'),
 
       modificaAttiva: false,
-      cameraInModifica: {
+      cameraInModifica: { //tiene temporaneamente i nuovi dati della camera prima di mandarli al server
         nomecamera: '',
         postiletto: 0,
         prezzonotte: 0,
@@ -104,13 +103,13 @@ export default defineComponent({
         window.location.reload();
       });
     },
-    //funzione per stampare gli utenti una sola volta e non per ogni prenotazione
+    //funzione per stampare le mail degli utenti una sola volta e non per ogni prenotazione
     univoca(): string[] {
       const insieme = Array.from(new Set(this.prenotazioni.map(p => p.email)));
       console.log(insieme);
       return insieme;
     },
-    //funzione per ottenere le camere una sola volta
+    //funzione per ottenere i nomi delle camere una sola volta
     cameraUnivoca(): string[] {
       const insieme = Array.from(new Set(this.camere.map(p => p.nomecamera)));
       console.log(insieme);
@@ -154,7 +153,7 @@ export default defineComponent({
       //se trovo la camera posso modificarla
       if (cameraDaModificare) {
         this.modificaAttiva = true;
-        this.cameraInModifica = { ...cameraDaModificare };
+        this.cameraInModifica = { ...cameraDaModificare }; //assegno a camerainmodifica i dati della camera da modificare
       } else {
         alert('Camera non trovata');
       }
@@ -193,7 +192,6 @@ export default defineComponent({
     },
     //funzione per impostare le date al formato corretto
     convertiData(date: Date) {
-      //const newdate = new Date(new Date(date).getTime() + 86400000).toISOString().split('T')[0];
       const newdate = new Date(date).toISOString().split('T')[0];
       return newdate;
     }

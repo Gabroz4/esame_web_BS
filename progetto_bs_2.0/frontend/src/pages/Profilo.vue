@@ -58,7 +58,7 @@ export default defineComponent({
         })
         .catch(error => {
           console.error('Errore durante il recupero del profilo e delle prenotazioni:', error);
-          alert('Si è verificato un errore durante il recupero del profilo e delle prenotazioni. Riprova più tardi.');
+          alert('Errore durante il recupero del profilo e delle prenotazioni');
         });
     },
     //funzione per formattare le date

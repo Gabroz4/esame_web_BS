@@ -1,5 +1,5 @@
 <template>
-  <div v-if="adminToken" class="nuovacamera">
+  <div v-if="adminToken" class="nuovacamera"> <!--impedisce che un normale utente acceda alle funzion admin-->
     <h2>Crea una Nuova Stanza</h2>
     <form @submit.prevent="createRoom" enctype="multipart/form-data">
       <div>
@@ -37,7 +37,8 @@
       </div>
 
       <div>
-        <input type="submit" value="Crea Stanza" :disabled="isLoading" />
+        <!--disabilita il tasto crea stanza per evitare richieste a raffica-->
+        <input type="submit" value="Crea Stanza" :disabled="isLoading" /> 
       </div>
       <div v-if="error" class="error-message">{{ error }}</div>
     </form>
@@ -64,7 +65,7 @@ export default defineComponent({
     //funzione per la creazione di una camera
     async createRoom() {
       this.error = '';//debugging
-      //se i campi obbligatori non sono stati inseriti
+      //check se i campi obbligatori non sono stati inseriti
       if (!this.camera.nomecamera || !this.camera.postiletto || !this.camera.prezzonotte) {
         this.error = 'Per favore, compila tutti i campi del modulo';
         return;
@@ -88,7 +89,7 @@ export default defineComponent({
           formData.append('imgcamera2', this.camera.imgcamera2);
         }
 
-        //invio al backend il mio form data per la creazione di una nuova camera
+        //invio al backend il mio form data per la creazione di una nuova camera specificando il tipo
         const response = await axios.post('/api/admin/nuova-camera', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -105,7 +106,7 @@ export default defineComponent({
         console.error('Si è verificato un errore durante la creazione della camera:', error);
         this.error = 'Si è verificato un errore durante la creazione della camera.';
       } finally {
-        this.isLoading = false;
+        this.isLoading = false; //ha finito di caricare, riabilita il tasto aggiungi camera
       }
     },
 

@@ -48,7 +48,7 @@ export default defineComponent({
 
         //controllo se ho avuto dei risultati dalla query nel backend
         if (response.data.success) {
-          //salvo il token di accesso in sessionStorage
+          //assegno i giusti token da sessionStorage in base ai dati inseriti per definire poi i permessi
           if (this.email !== 'admin@admin.com') {
             sessionStorage.setItem('userToken', 'IsLoggedIn');
           } else {
@@ -64,6 +64,7 @@ export default defineComponent({
               window.location.reload();
             });
           } else {
+            //se admin reindirizza a profilo admin
             this.$router.push('/admin').then(() => {
               window.location.reload();
             });

@@ -1,4 +1,4 @@
-//creazione interfaccia "Camera"
+//definizione dei tipi da usare nel frontend
 export interface Camera {
     nomecamera: string;
     postiletto: number;
@@ -9,7 +9,6 @@ export interface Camera {
     imgcamera2: File | null; 
 }
 
-//creazione interfaccia "User"
 export interface User {
     nome: string;
     cognome: string;
@@ -18,7 +17,6 @@ export interface User {
     imgutente: string;
 }
 
-//creazione interfaccia "Prenotazione"
 export interface Prenotazione {
     id: number;
     email: string;
