@@ -28,12 +28,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const camereController = __importStar(require("../controllers/camere-controller"));
+//libreria per la gestione del caricamento di file multipart/form-data
 const multer_1 = __importDefault(require("multer"));
 const router = (0, express_1.Router)();
-// Configurazione del middleware di caricamento di file
+//configurazione del caricamento di file
 const storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progetto_bs_2.0/backend/public/img');
+        /*
+        C:/Users/tomma/Desktop/Esame-Web/esame_web_BS/progetto_bs_2.0/backend/public/img
+        C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progetto_bs_2.0/backend/public/img
+        qui va inserito il percorso in cui andranno le immagini
+        */
+        cb(null, 'C:/Users/tomma/Desktop/Esame-Web/esame_web_BS/progetto_bs_2.0/backend/public/img');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -41,10 +47,6 @@ const storage = multer_1.default.diskStorage({
 });
 const upload = (0, multer_1.default)({
     storage: storage,
-    fileFilter: function (req, file, cb) {
-        // Personalizza la logica di filtraggio se necessario
-        cb(null, true);
-    },
 }).fields([
     { name: 'imgcamera1', maxCount: 1 },
     { name: 'imgcamera2', maxCount: 1 },

@@ -3,6 +3,7 @@ import { connection } from "../utils/db";
 import fs from "fs";
 import path from "path";
 
+//funzione per chiamare tutte le stanze
 export async function allRooms(req: Request, res: Response) {
   connection.execute(
     `SELECT *
@@ -19,6 +20,7 @@ export async function allRooms(req: Request, res: Response) {
   );
 }
 
+//funzione per chiamare una singola stanza dato il nome
 export async function oneRoom(req: Request, res: Response) {
   connection.execute(
     `SELECT *
@@ -36,6 +38,7 @@ export async function oneRoom(req: Request, res: Response) {
   );
 }
 
+//funzione per creare una stanza
 export async function creaStanza(req: Request, res: Response) {
   const {
     nomecamera,
@@ -49,7 +52,7 @@ export async function creaStanza(req: Request, res: Response) {
     descrizione: string;
   } = req.body;
 
-  //verifica se req.files è un oggetto e se il campo immagini esiste
+  //verifica se req.files è un oggetto e se le immagini esistono
   const imgcamera1 =
     req.files && "imgcamera1" in req.files
       ? req.files["imgcamera1"][0]
@@ -58,10 +61,12 @@ export async function creaStanza(req: Request, res: Response) {
     req.files && "imgcamera2" in req.files
       ? req.files["imgcamera2"][0]
       : undefined;
+
+  //stampa i contenuti
   console.log("Contenuto di req.files:", req.files);
-  console.log("Contenuto di imgcamera1:", imgcamera1);
 
   try {
+    //controllo se i campi obbligatori sono stati inseriti
     if (!nomecamera || !postiletto || !prezzonotte) {
       return res.json({
         success: false,
@@ -69,6 +74,7 @@ export async function creaStanza(req: Request, res: Response) {
       });
     }
 
+    //query per l'inserimento nel db di una nuova camera
     const query =
       "INSERT INTO `camere` (`nomecamera`, `postiletto`, `prezzonotte`, `descrizione`, `imgcamera1`, `imgcamera2`) VALUES (?, ?, ?, ?, ?, ?)";
     const [results] = await connection
@@ -78,12 +84,12 @@ export async function creaStanza(req: Request, res: Response) {
         postiletto,
         prezzonotte,
         descrizione,
-        imgcamera1?.originalname || null,
+        imgcamera1?.originalname || null, //assegno all'immagine il suo nome originale
         imgcamera2?.originalname || null,
       ]);
 
     //salva le immagini nella cartella public/img
-    if (imgcamera1 && imgcamera1.buffer) {
+    if (imgcamera1 && imgcamera1.buffer) { //se imgcamera1 esiste e ha un buffer assegna il percorso
       const img1Path = path.join(
         __dirname,
         "../../public/img",
@@ -91,16 +97,17 @@ export async function creaStanza(req: Request, res: Response) {
       );
       try {
         await fs.promises.writeFile(
-          img1Path,
-          imgcamera1.buffer.toString("binary"),
-          "binary"
+          img1Path, //dove deve mettere il file
+          imgcamera1.buffer.toString("binary"), //l'effettivo file da posizionare
+          "binary" //il formato da considerare
         );
-        console.log("File written successfully:", img1Path);
+        console.log("File inserito con successo:", img1Path);
       } catch (error) {
-        console.error("Error writing file:", error);
+        console.error("Errore durante l'inserimento del file:", error);
         throw error;
       }
     }
+    //stessa logica dell'immagine 1
     if (imgcamera2 && imgcamera2.buffer) {
       const img2Path = path.join(
         __dirname,
@@ -113,9 +120,9 @@ export async function creaStanza(req: Request, res: Response) {
           imgcamera2.buffer.toString("binary"),
           "binary"
         );
-        console.log("File written successfully:", img2Path);
+        console.log("File inserito con successo:", img2Path);
       } catch (error) {
-        console.error("Error writing file:", error);
+        console.error("Errore durante l'inserimento del file:", error);
         throw error;
       }
     }
@@ -125,16 +132,18 @@ export async function creaStanza(req: Request, res: Response) {
     console.error("Errore durante la gestione della richiesta:", error);
 
     //dettagli sull'errore (in fase di debugging)
-    if (error instanceof Error) {
-      console.error("Tipo di errore:", error.name);
-      console.error("Messaggio di errore:", error.message);
-      console.error("Stack trace:", error.stack);
-    }
+
+    //if (error instanceof Error) {
+    //  console.error("Tipo di errore:", error.name);
+    //  console.error("Messaggio di errore:", error.message);
+    //  console.error("Stack trace:", error.stack);
+    //}
 
     //se è un errore legato a fs.promises.writeFile, aggiungi un log specifico
-    if (error.code === "ERR_INVALID_ARG_TYPE") {
-      console.error("Errore durante la scrittura del file:", error.message);
-    }
+    
+    //if (error.code === "ERR_INVALID_ARG_TYPE") {
+    //  console.error("Errore durante la scrittura del file:", error.message);
+    //}
     //se fallisce restituisce l'errore al frontend
     res.status(500).json({
       success: false,

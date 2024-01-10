@@ -162,6 +162,7 @@ body {
   }
 
   .select-container {
+    margin-top: 20px;
     margin-bottom: 20px;
     label {
       color: black;
@@ -172,14 +173,6 @@ body {
     label {
       color: black;
     }
-  }
-
-  .prenotazione,
-  .camera-dettagli,
-  .edit-form {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
   }
 
   .delete-btn,

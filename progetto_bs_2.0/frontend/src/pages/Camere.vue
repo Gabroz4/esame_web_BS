@@ -1,6 +1,6 @@
 <template>
   <div class="camera">
-    <!-- Se la camera esiste, mostra i suoi dettagli -->
+    <!-- se la camera esiste, mostra i suoi dettagli -->
     <div v-if="camera">
       <h2>Camera {{ camera.nomecamera }}</h2>
       <p>{{ camera.descrizione }}</p>
@@ -10,19 +10,19 @@
       <img :src="'/img/' + camera.imgcamera2" alt="" />
     </div>
 
-    <!-- Seleziona date prenotazione -->
+    <!-- seleziona data inizio e fine prenotazione-->
     <p>Data inizio:</p>
     <input type="date" name="data inizio" v-model="dataInizio">
     <p>Data fine:</p>
     <input type="date" name="data fine" v-model="dataFine">
 
-    <!-- Se il numero di giorni e il prezzo totale sono noti, visualizza i dettagli della prenotazione -->
+    <!-- visualizza i dettagli della prenotazione -->
     <div v-if="numeroGiorni !== null && prezzoTot !== null">
       <p>Numero di giorni selezionati: {{ numeroGiorni }}</p>
       <p>Prezzo totale: {{ prezzoTot }}€</p>
     </div>
 
-    <!-- Conferma prenotazione -->
+    <!-- conferma prenotazione -->
     <button @click="confermaPrenotazione">Conferma Prenotazione</button>
   </div>
 </template>
@@ -34,29 +34,28 @@ import { Camera } from "../types";
 
 export default defineComponent({
   data() {
-    //  Inizializza le variabili di stato del componente
     return {
       camera: null as Camera | null, //camera selezionata
       dataInizio: null as string | null,
       dataFine: null as string | null,
-      prezzoTotale: null as number | null, // Prezzo totale della prenotazione
-      userToken: sessionStorage.getItem('userToken'), // Token dell'utente
-      emailToken: sessionStorage.getItem('emailToken'), // Email dell'utente
-      errorMessage: '' as string,
+      prezzoTotale: null as number | null,
+      userToken: sessionStorage.getItem('userToken'), //token dell'utente
+      emailToken: sessionStorage.getItem('emailToken'), //token dell'email
+      errorMessage: '' as string, //debugging
     };
   },
   computed: {
-    // Calcola il numero di giorni tra le date selezionate
+    //calcola il numero di giorni tra le date selezionate
     numeroGiorni(): number | null {
       return this.calcolaNumeroGiorni(this.dataInizio, this.dataFine);
     },
-    // Calcola il prezzo totale in base alle date e alla camera selezionate
+    //calcola il prezzo totale in base alle date e alla camera selezionata
     prezzoTot(): number | null {
       return this.calcolaPrezzoTotale(this.numeroGiorni, this.camera);
     },
   },
   methods: {
-    // Funzione per calcolare il numero di giorni tra due date
+    //funzione per calcolare il numero di giorni tra due date
     calcolaNumeroGiorni(dataInizio: string | null, dataFine: string | null): number | null {
       if (dataInizio && dataFine) {
         const timestampInizio = new Date(dataInizio).getTime();
@@ -71,7 +70,7 @@ export default defineComponent({
       }
       return null;
     },
-    // Funzione per calcolare il prezzo totale della prenotazione
+    //funzione per calcolare il prezzo totale della prenotazione
     calcolaPrezzoTotale(numeroGiorni: number | null, camera: Camera | null): number | null {
       if (numeroGiorni !== null && camera !== null) {
         this.prezzoTotale = camera.prezzonotte * numeroGiorni;
@@ -79,7 +78,7 @@ export default defineComponent({
       }
       return null;
     },
-    // Funzione per recuperare i dettagli della camera
+    //funzione per ottenere i dettagli della camera dato il nome
     async unaCamera(): Promise<void> {
       try {
         const response = await axios.get("/api/camere/" + this.$route.params.nomecamera);
@@ -89,7 +88,7 @@ export default defineComponent({
         this.errorMessage = 'Errore durante il recupero dei dettagli della camera';
       }
     },
-    // Funzione per confermare la prenotazione
+    //funzione per confermare la prenotazione
     async confermaPrenotazione(): Promise<void> {
       if (!this.userToken) {
         alert('Per prenotare una camera, devi prima registrarti.');
@@ -99,7 +98,7 @@ export default defineComponent({
       if (this.dataInizio && this.dataFine && new Date(this.dataInizio) > new Date(this.dataFine)) {
         alert('La data di inizio non può essere successiva alla data di fine');
         return;
-      }
+      }//aggiunta di un giorno per colmare l'errore
       function aggiungiUnGiorno(data: string): string {
         const dataObj = new Date(data);
         dataObj.setDate(dataObj.getDate() + 1);
@@ -109,6 +108,7 @@ export default defineComponent({
       const dataInizioFormatted = this.dataInizio ? aggiungiUnGiorno(this.dataInizio) : null;
       const dataFineFormatted = this.dataFine ? aggiungiUnGiorno(this.dataFine) : null;
 
+      //corpo della richiesta da mandare al backend
       const requestBody = {
         datainizio: dataInizioFormatted,
         datafine: dataFineFormatted,
@@ -119,6 +119,7 @@ export default defineComponent({
       };
 
       try {
+        //risultato della query dal backend
         const response = await axios.post(`/api/camere/${this.$route.params.nomecamera}`, requestBody);
 
         if (response.data.success) {
@@ -141,7 +142,6 @@ export default defineComponent({
       }
     },
   },
-  // Quando il componente viene montato, recupera i dettagli della camera
   mounted(): void {
     this.unaCamera();
   },

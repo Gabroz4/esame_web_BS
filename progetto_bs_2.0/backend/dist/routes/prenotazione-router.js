@@ -26,5 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const prenotazioneController = __importStar(require("../controllers/prenotazione-controller"));
 const router = (0, express_1.Router)();
+//quando riceve la richiesta post in questa route, richiama la funzione inserisciPrenotazione
 router.post('/api/camere/:nomecamera', prenotazioneController.inserisciPrenotazione);
 exports.default = router;

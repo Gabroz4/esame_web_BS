@@ -13,7 +13,7 @@
         <li>Id prenotazione: {{ prenotazione.id }}</li>
         <li>Camera: {{ prenotazione.nomecamera }}</li>
         <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
-        <li>Totale: {{ prenotazione.prezzo }}€</li>
+        <li>Totale: {{ prenotazione.prezzotot }}€</li>
       </ul>
     </div>
     <button class="edit-btn" @click="logout">Logout</button>
@@ -23,16 +23,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import axios from 'axios';
+import { User, Prenotazione } from '../types';
 
 export default defineComponent({
   data() {
     return {
-      user: {} as any,
-      prenotazioni: [] as any[],
+      user: {} as User,
+      prenotazioni: [] as Prenotazione[],
       emailToken: sessionStorage.getItem('emailToken')
     };
   },
   methods: {
+    //funzione per il logout
     logout() {
       sessionStorage.removeItem('userToken');
       sessionStorage.removeItem('emailToken');
@@ -40,12 +42,15 @@ export default defineComponent({
         window.location.reload();
       });
     },
+    //funzione per ottenere la prenotazione data l'email
     fetchProfileAndPrenotazioni() {
+      //se non esiste l'email
       if (!this.emailToken) {
         console.error('Token dell\'utente non presente');
         return;
       }
 
+      //chiamata al backend per ottenere il profilo e le sue prenotazioni data l'email
       axios.get(`/api/user/${this.emailToken}`)
         .then(response => {
           this.user = response.data.profile;
@@ -56,10 +61,10 @@ export default defineComponent({
           alert('Si è verificato un errore durante il recupero del profilo e delle prenotazioni. Riprova più tardi.');
         });
     },
-    formatDates(dateString: string) {
-      //formatta la data
-      const date = new Date(dateString);
-      return date.toISOString().split('T')[0];
+    //funzione per formattare le date
+    formatDates(date: Date) {
+      const newdate = new Date(date).toISOString().split('T')[0];
+      return newdate;
     },
   },
   mounted() {

@@ -8,23 +8,22 @@ import profiloRouter from './routes/profilo-router'
 import adminRouter from './routes/profiloadmin-router'
 import path from 'path';
 
-// Creazione di un'app Express
+//creazione del server express
 const app: Express = express();
 const port: number = 3000;
 
-// Middleware per la gestione delle route storiche
+//gestione delle route storiche
 app.use(history());
 
-// Utilizzo di middleware per il parsing dei dati JSON e URL-encoded
+//middleware per il parsing dei dati
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware per la gestione delle route statiche
-// app.use(express.static('public'));
+//middleware per la gestione delle route statiche
 app.use('/img', express.static('public/img'));
 app.use(express.static(path.resolve(__dirname, '../../frontend/dist')));
 
-// Usa i router per gestire le varie route
+//gestione dei vari router
 app.use(camereRouter);
 app.use(userRouter);
 app.use(prenotazioneRouter);
@@ -32,13 +31,13 @@ app.use(profiloRouter);
 app.use(adminRouter);
 app.use(registrazioneRouter);
 
-// Gestione della risposta per le pagine non trovate
+//gestione della risposta per le pagine non trovate
 app.use((req: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/plain');
   res.status(404).send('Ops... Pagina non trovata');
 });
 
-// Avvio del server sulla porta specificata
+//avvio del server sulla porta specificata
 app.listen(port, function () {
   console.log(`Listening on http://localhost:${port}`);
 });

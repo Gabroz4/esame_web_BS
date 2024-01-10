@@ -26,6 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const profiloController = __importStar(require("../controllers/profilo-controller"));
 const router = (0, express_1.Router)();
-// Endpoint per ottenere il profilo e le prenotazioni dell'utente
+//a una richiesta get restituisce il profilo e le prenotazioni dell'utente
 router.get('/api/user/:email', profiloController.getProfileAndPrenotazioni);
 exports.default = router;

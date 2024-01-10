@@ -1,6 +1,7 @@
 import { createApp } from "vue"
 import { createRouter, createWebHistory, Router } from "vue-router"
 import "./style.scss"
+//import di tutte le pagine vue
 import App from "./App.vue"
 import Home from "./pages/Home.vue"
 import Camere from "./pages/Camere.vue"
@@ -11,10 +12,11 @@ import Profilo from "./pages/Profilo.vue"
 import ProfiloAdmin from "./pages/ProfiloAdmin.vue"
 import NuovaCamera from "./pages/NuovaCamera.vue"
 
+//gestione delle route delle pagine vue
 const router: Router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", component: Home },
+    { path: "/", component: Home },//alla pagina home è associato l'URL "/"
     { path: "/login", component: Login },
     { path: "/registrati", component: Registrati },
     { path: "/camere/:nomecamera", component: Camere },

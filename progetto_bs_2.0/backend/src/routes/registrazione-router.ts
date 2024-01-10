@@ -3,6 +3,7 @@ import * as registrazioneController from '../controllers/registrazione-controlle
 
 const router: Router = Router();
 
+//richiama la funzione per la registrazione dell'utente
 router.post('/api/registrati', registrazioneController.registraUtente);
 
 export default router;

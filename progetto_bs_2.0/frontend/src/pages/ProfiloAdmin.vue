@@ -6,7 +6,7 @@
     <div class="select-container">
       <label for="utenti-select">Seleziona Prenotazione:</label>
       <select name="utenti" id="utenti-select" v-model="emailSelezionata">
-        <option value="" disabled selected>-- Scegli un utente --</option>
+        <option value="" selected>-- Scegli un utente --</option>
         <option v-for="email in univoca()" :key="email" :value="email">{{ email }}</option>
       </select>
     </div>
@@ -17,8 +17,8 @@
         <h3>Prenotazione #{{ prenotazione.id }}</h3>
         <p>E-mail: {{ prenotazione.email }}</p>
         <p>Camera: {{ prenotazione.nomecamera }}</p>
-        <p>Data Inizio: {{ prenotazione.datainizio }}</p>
-        <p>Data Fine: {{ prenotazione.datafine }}</p>
+        <p>Data Inizio: {{ convertiData(prenotazione.datainizio) }}</p>
+        <p>Data Fine: {{ convertiData(prenotazione.datafine) }}</p>
         <button @click="eliminaPrenotazione(prenotazione.id)" class="delete-btn">Elimina Prenotazione</button>
       </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="select-container">
       <label for="camere-select">Seleziona Camera:</label>
       <select name="camere" id="camere-select" v-model="cameraSelezionata">
-        <option value="" disabled selected>-- Scegli una camera --</option>
+        <option value="" selected>-- Scegli una camera --</option>
         <option v-for="camera in cameraUnivoca()" :key="camera" :value="camera">{{ camera }}</option>
       </select>
     </div>
@@ -49,13 +49,13 @@
     <div v-if="modificaAttiva" class="edit-form">
       <h2>Modifica Camera</h2>
       <label for="postiletto">Posti Letto:</label>
-      <input type="number" v-model="cameraInModifica.postiletto" />
+      <input id="postiletto" type="number" v-model="cameraInModifica.postiletto" />
 
       <label for="prezzonotte">Prezzo a Notte:</label>
-      <input type="number" v-model="cameraInModifica.prezzonotte" />
+      <input id="prezzonotte" type="number" v-model="cameraInModifica.prezzonotte" />
 
       <label for="descrizione">Descrizione:</label>
-      <textarea v-model="cameraInModifica.descrizione"></textarea>
+      <textarea id="descrizione" v-model="cameraInModifica.descrizione"></textarea>
 
       <button @click="salvaModificheCamera" class="save-btn">Salva Modifiche</button>
     </div>
@@ -80,7 +80,6 @@ export default defineComponent({
       camere: [] as Camera[],
       emailSelezionata: null as string | null,
       cameraSelezionata: null as string | null,
-
       adminToken: sessionStorage.getItem('adminToken'),
 
       modificaAttiva: false,
@@ -95,31 +94,36 @@ export default defineComponent({
   },
 
   methods: {
+    //funzione per il logout
     logout() {
       sessionStorage.removeItem('userToken');
       sessionStorage.removeItem('emailToken');
       sessionStorage.removeItem('adminToken');
       this.$router.push('/').then(() => {
-        // Forza la ricarica della pagina
+        //ricarica della pagina
         window.location.reload();
       });
     },
+    //funzione per stampare gli utenti una sola volta e non per ogni prenotazione
     univoca(): string[] {
       const insieme = Array.from(new Set(this.prenotazioni.map(p => p.email)));
       console.log(insieme);
       return insieme;
     },
+    //funzione per ottenere le camere una sola volta
     cameraUnivoca(): string[] {
       const insieme = Array.from(new Set(this.camere.map(p => p.nomecamera)));
       console.log(insieme);
       return insieme;
     },
+    //funzione per l'eliminazione di una prenotazione dato l'id
     eliminaPrenotazione(id: number) {
+      //chiamata di tipo delete al backend per cancellare la prenotazione
       axios.delete(`/api/prenotazioni/${id}`)
         .then(response => {
           if (response.data.success) {
             alert('Prenotazione eliminata con successo');
-            // Aggiorna la lista delle prenotazioni dopo l'eliminazione
+            //aggiorno la lista delle prenotazioni dopo l'eliminazione
             this.fetchPrenotazioni();
           } else {
             alert('Errore durante l\'eliminazione della prenotazione');
@@ -127,12 +131,14 @@ export default defineComponent({
         })
         .catch(error => console.error(error));
     },
+    //funzione per l'eliminazione di una camera
     eliminaCamera(nomecamera: string) {
+      //chiamata di tipo delete al backend per cancellare la camera
       axios.delete(`/api/camere/${nomecamera}`)
         .then(response => {
           if (response.data.success) {
             alert('Camera eliminata con successo');
-            // Aggiorna la lista delle prenotazioni dopo l'eliminazione
+            //aggiorno la lista delle prenotazioni dopo l'eliminazione
             this.fetchCamere();
           } else {
             alert('Errore durante l\'eliminazione della camera');
@@ -140,11 +146,12 @@ export default defineComponent({
         })
         .catch(error => console.error(error));
     },
+    //funzione per la modificazione dei dati di una camera
     modificaCamera(nomecamera: string) {
-      // Trova la camera da modificare
+      //trova la camera da modificare
       const cameraDaModificare = this.camere.find(camera => camera.nomecamera === nomecamera);
 
-      // Se la camera è trovata, abilita la modalità di modifica
+      //se trovo la camera posso modificarla
       if (cameraDaModificare) {
         this.modificaAttiva = true;
         this.cameraInModifica = { ...cameraDaModificare };
@@ -152,19 +159,23 @@ export default defineComponent({
         alert('Camera non trovata');
       }
     },
+    //funzione per il salvataggio delle modifiche alla camera
     salvaModificheCamera() {
+      //chiamata al backend per la modifica della camera dato il nome e i dati da modificare
       axios.put(`/api/camere/${this.cameraInModifica.nomecamera}`, this.cameraInModifica)
         .then(response => {
           if (response.data.success) {
             alert('Camera modificata con successo');
+            //aggiorno la lista delle camere dopo la modificazine
             this.fetchCamere();
-            this.modificaAttiva = false; // Disabilita la modalità di modifica
+            this.modificaAttiva = false; //disabilita la modifica
           } else {
             alert('Errore durante la modifica della camera');
           }
         })
         .catch(error => console.error(error));
     },
+    //funzione per ottenere tutte le prenotazioni
     fetchPrenotazioni() {
       axios.get('/api/prenotazioni')
         .then(response => {
@@ -172,12 +183,19 @@ export default defineComponent({
         })
         .catch(error => console.error(error));
     },
+    //funzione per ottenere tutte le camere
     fetchCamere() {
       axios.get('/api/camere')
         .then(response => {
           this.camere = response.data;
         })
         .catch(error => console.error(error));
+    },
+    //funzione per impostare le date al formato corretto
+    convertiData(date: Date) {
+      //const newdate = new Date(new Date(date).getTime() + 86400000).toISOString().split('T')[0];
+      const newdate = new Date(date).toISOString().split('T')[0];
+      return newdate;
     }
   },
 

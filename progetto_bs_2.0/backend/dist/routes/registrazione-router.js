@@ -26,5 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const registrazioneController = __importStar(require("../controllers/registrazione-controller"));
 const router = (0, express_1.Router)();
+//richiama la funzione per la registrazione dell'utente
 router.post('/api/registrati', registrazioneController.registraUtente);
 exports.default = router;

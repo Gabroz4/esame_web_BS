@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.modificaCamera = exports.eliminaCamera = exports.eliminaPrenotazione = exports.fetchCamere = exports.fetchPrenotazioni = void 0;
 const db_1 = require("../utils/db");
+//funzione per ottenere tutte le prenotazioni
 function fetchPrenotazioni(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -25,6 +26,7 @@ function fetchPrenotazioni(req, res) {
     });
 }
 exports.fetchPrenotazioni = fetchPrenotazioni;
+//funzione per ottenere tutte le camere
 function fetchCamere(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -39,6 +41,7 @@ function fetchCamere(req, res) {
     });
 }
 exports.fetchCamere = fetchCamere;
+//funzione per l'eliminazione di una determinata prenotazione dato il suo id
 function eliminaPrenotazione(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const prenotazioneId = req.params.id;
@@ -54,6 +57,7 @@ function eliminaPrenotazione(req, res) {
     });
 }
 exports.eliminaPrenotazione = eliminaPrenotazione;
+//funzione per l'eliminazione di una determinata camera dato il suo nome
 function eliminaCamera(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const nomeCamera = req.params.nomecamera;
@@ -69,6 +73,7 @@ function eliminaCamera(req, res) {
     });
 }
 exports.eliminaCamera = eliminaCamera;
+//funzione per la modificazione di una camera dato il suo nome
 function modificaCamera(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const nomeCamera = req.params.nomecamera;

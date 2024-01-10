@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { connection } from '../utils/db';
 
+//funzione per ottenere tutte le prenotazioni
 export async function fetchPrenotazioni(req: Request, res: Response) {
     try {
         const query = 'SELECT * FROM prenotazione';
@@ -12,6 +13,7 @@ export async function fetchPrenotazioni(req: Request, res: Response) {
     }
 }
 
+//funzione per ottenere tutte le camere
 export async function fetchCamere(req: Request, res: Response) {
     try {
         const query = 'SELECT * FROM camere';
@@ -23,6 +25,7 @@ export async function fetchCamere(req: Request, res: Response) {
     }
 }
 
+//funzione per l'eliminazione di una determinata prenotazione dato il suo id
 export async function eliminaPrenotazione(req: Request, res: Response) {
     const prenotazioneId = req.params.id;
 
@@ -37,6 +40,7 @@ export async function eliminaPrenotazione(req: Request, res: Response) {
     }
 }
 
+//funzione per l'eliminazione di una determinata camera dato il suo nome
 export async function eliminaCamera(req: Request, res: Response) {
     const nomeCamera = req.params.nomecamera;
 
@@ -51,6 +55,7 @@ export async function eliminaCamera(req: Request, res: Response) {
     }
 }
 
+//funzione per la modificazione di una camera dato il suo nome
 export async function modificaCamera(req: Request, res: Response) {
     const nomeCamera = req.params.nomecamera;
     const { postiletto, prezzonotte, descrizione } = req.body;

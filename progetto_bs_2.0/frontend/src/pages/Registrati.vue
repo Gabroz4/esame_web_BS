@@ -43,8 +43,10 @@ export default defineComponent({
   },
 
   methods: {
+    //funzione per l'invio dei dati
     async submitForm() {
-      this.error = ''; // Reset error on each submit
+      this.error = ''; //debugging
+      //se i campi obbligatori non sono stati inseriti
       if (!this.user.nome || !this.user.cognome || !this.user.email || !this.user.password) {
         this.error = 'Per favore, compila tutti i campi del modulo';
         return;
@@ -53,10 +55,12 @@ export default defineComponent({
       this.isLoading = true;
 
       try {
+        //chiamata al backend con i dati da inserire del nuovo utente
         const response = await axios.post('/api/registrati', this.user);
 
         console.log('Risposta del server:', response);
 
+        //se la query ha avuto successo
         if (response.data.success) {
           alert('Registrazione avvenuta con successo');
           this.$router.push('/login');

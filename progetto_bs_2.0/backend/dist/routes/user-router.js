@@ -26,6 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const userController = __importStar(require("../controllers/user-controller"));
 const router = (0, express_1.Router)();
-// Endpoint di login
+//richiama la funzione per il login
 router.post('/api/login', userController.login);
 exports.default = router;
