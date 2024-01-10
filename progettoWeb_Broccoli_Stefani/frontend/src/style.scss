@@ -1,3 +1,128 @@
+img.logo {
+  max-width: 5%;
+}
+
+.camera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 3px;
+  background-color: #e5e1da;
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  input {
+    
+    width: 80%;
+    padding: 2px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #112830;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0b31a;
+      color: #112830;
+    }
+  }
+
+  /* Additional styling for specific elements if needed */
+  img {
+    max-width: 80%;
+    margin-left: 2px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styles for the section with reservation details */
+  > div {
+    margin-top: 10px;
+  }
+}
+
+article.cameraprev {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  padding-right: 3px;
+  max-width: 70%;
+}
+
+article.cameraprev img {
+  padding-top: 10px;
+  max-width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+article.cameraprev p {
+  flex-grow: 1;
+  overflow: hidden;
+  text-align: right;
+  margin: 0;
+}
+
+article.cameraprev h3 {
+  flex-grow: 1;
+  overflow: hidden;
+  text-align: right;
+  margin: 0;
+}
+
+.intro h3{
+  text-align: center;
+}
+
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  .link-btn {
+    background-color: #112830;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+    &:hover {
+      background-color: #f0b31a;
+      color: #112830;
+    }
+  }
+}
+
 // Stili Home.Vue
 
 * {
@@ -16,230 +141,6 @@ main > h3 {
   padding-left: 5%;
   padding-right: 5%;
   text-align: center;
-}
-.camera {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin: 20px;
-  background-color: #f4f4f4;
-
-  h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-
-  p {
-    margin-bottom: 8px;
-  }
-
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-
-  button {
-    background-color: #112830;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #f0b31a;
-    }
-  }
-
-  /* Additional styling for specific elements if needed */
-  img {
-    max-width: 30%;
-    margin-left: 10px;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Styles for the section with reservation details */
-  > div {
-    margin-top: 20px;
-  }
-}
-
-article.cameraprev {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
-  max-width: 70%;
-}
-
-article.cameraprev img {
-  padding-top: 20px;
-  max-width: 30%;
-  height: auto;
-  margin-right: 10px;
-  padding-left: 0.5%;
-}
-
-article.cameraprev p {
-  flex-grow: 1;
-  overflow: hidden;
-  text-align: right;
-  margin: 0;
-  padding-right: 5%;
-}
-
-article.cameraprev h3 {
-  flex-grow: 1;
-  overflow: hidden;
-  text-align: right;
-  margin: 0;
-}
-
-.intro h3{
-  text-align: center;
-}
-
-
-.homepage {
-  padding-left: 15%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 80%;
-  .link-btn {
-    background-color: #112830;
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 5px;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-}
-
-// Global Styles
-body {
-  background-color: #e5e1da;
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-}
-
-.hometitle {
-  display: inline-block;
-  margin: 0;
-}
-
-.logo {
-  vertical-align: middle;
-  max-width: 60px;
-  display: inline-block;
-  justify-content: left;
-  padding-left: 3px;
-}
-//Admin styles
-.adminprofile {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f4f4f4;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  ul {
-    list-style: none;
-  }
-
-  .select-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    label {
-      color: black;
-    }
-  }
-
-  .edit-form {
-    label {
-      color: black;
-    }
-  }
-
-  .delete-btn,
-  .edit-btn,
-  .save-btn,
-  .logout-btn,
-  .link-btn {
-    background-color: #112830;
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 5px;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-}
-
-//nuovacamera styles
-.nuovacamera {
-  h2 {
-    font-size: large;
-  }
-
-  form {
-    div {
-      margin-bottom: 20px;
-
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      input[type="text"],
-      input[type="number"],
-      textarea {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-      }
-
-      textarea {
-        height: 100px;
-      }
-
-      input[type="file"] {
-        margin-bottom: 10px;
-      }
-    }
-
-    img {
-      max-width: 100px;
-      max-height: 100px;
-      margin-right: 10px;
-    }
-
-    input[type="submit"] {
-      background-color: #112830;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-      font-size: 14px;
-    }
-  }
 }
 
 // Header Styles
@@ -287,6 +188,7 @@ nav a {
   color: #fff;
   font-weight: bold;
 }
+
 
 // Main Styles
 main {
@@ -358,7 +260,7 @@ article p {
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #eaeaea;
+  background-color: #e5e1da;
 }
 
 .container {
@@ -368,11 +270,32 @@ body {
   height: 100vh;
 }
 
-.form-container {
+.form-container{
+    background-color: #205d71;
+    color: #f0b31a;
+    border-radius: 4px;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    input[type="submit"]{
+
+    &:hover {
+      background-color: #f0b31a;
+      color: #112830;
+      }
+    }
+  
   background-color: #112830;
   padding: 10%;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  div {
+    label {
+      color: white;
+    }
+  }
 }
 
 form {
@@ -384,7 +307,7 @@ form {
 
 label {
   margin-bottom: 8px;
-  color: #fff;
+  color: black;
 }
 
 input {
@@ -395,16 +318,348 @@ input {
 }
 
 input[type="submit"] {
-  background-color: #9EB8D9;
-  color: #333;
+  background-color: #112830;
+  color: #fff;
   cursor: pointer;
   font-weight: bold;
 }
+.adminprofile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e5e1da;
+  padding-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  ul {
+    list-style: none;
+  }
+
+  .select-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    label {
+      color: black;
+    }
+  }
+
+  .adminprofile{
+    label {
+      color: black;
+    }
+  }
+  .edit-form {
+    label {
+      color: black;
+    }
+  }
+
+  .delete-btn,
+  .edit-btn,
+  .save-btn,
+  .logout-btn,
+  .link-btn {
+    background-color: #112830;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+    &:hover {
+      background-color: #f0b31a;
+      color: #112830;
+    }
+  }
+}
+
 
 // Stili Aggiunti per Registrati.Vue
 // ... Puoi copiare e incollare gli stili per Registrati.Vue se necessario ...
 
 @media screen and (min-width: 768px) {
+  
+  button {
+    background-color: #112830;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0b31a;
+      color: #112830;
+    }
+  }
+
+  .form-container {
+    background-color: #112830;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    div {
+      label {
+        color: white;
+      }
+    }
+  }
+
+  .camera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 20px;
+    background-color: #e5e1da;
+  
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      margin-bottom: 8px;
+    }
+  
+    input {
+      
+      width: 30%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+  
+    button {
+      background-color: #112830;
+      color: #fff;
+      border-radius: 4px;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #f0b31a;
+        color: #112830;
+      }
+    }
+  
+    /* Additional styling for specific elements if needed */
+    img {
+      max-width: 30%;
+      margin-left: 10px;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Styles for the section with reservation details */
+    > div {
+      margin-top: 20px;
+    }
+  }
+  
+  article.cameraprev {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 70%;
+  }
+  
+  article.cameraprev img {
+    padding-top: 20px;
+    max-width: 30%;
+    height: auto;
+    margin-right: 10px;
+    padding-left: 0.5%;
+  }
+  
+  article.cameraprev p {
+    flex-grow: 1;
+    overflow: hidden;
+    text-align: right;
+    margin: 0;
+    padding-right: 5%;
+  }
+  
+  article.cameraprev h3 {
+    flex-grow: 1;
+    overflow: hidden;
+    text-align: right;
+    margin: 0;
+  }
+  
+  .intro h3{
+    text-align: center;
+  }
+  
+  
+  .homepage {
+    padding-left:3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    .link-btn {
+      background-color: #112830;
+      color: #fff;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 5px;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 14px;
+      &:hover {
+        background-color: #f0b31a;
+        color: #112830;
+      }
+    }
+  }
+  
+  // Global Styles
+  body {
+    background-color: #e5e1da;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+  
+  .hometitle {
+    display: inline-block;
+    margin: 0;
+  }
+  
+  .logo {
+    vertical-align: middle;
+    max-width: 60px;
+    display: inline-block;
+    justify-content: left;
+    padding-left: 3px;
+  }
+  //Admin styles
+  .adminprofile {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f3f1ed;
+    padding-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    ul {
+      list-style: none;
+    }
+  
+    .select-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      label {
+        color: black;
+      }
+    }
+  
+    .adminprofile{
+      label {
+        color: black;
+      }
+    }
+    .edit-form {
+      label {
+        color: black;
+      }
+    }
+  
+    .delete-btn,
+    .edit-btn,
+    .save-btn,
+    .logout-btn,
+    .link-btn {
+      background-color: #112830;
+      color: #fff;
+      padding: 10px;
+      margin-bottom: 5px;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 14px;
+      &:hover {
+        background-color: #f0b31a;
+        color: #112830;
+      }
+    }
+  }
+  
+  //nuovacamera styles
+  .nuovacamera {
+
+    h2 {
+      font-size: large;
+    }
+    label {
+      color: black;
+    }
+  
+    form {
+      div {
+        margin-bottom: 20px;
+  
+        label {
+          display: block;
+          margin-bottom: 5px;
+        }
+  
+        input[type="text"],
+        input[type="number"],
+        textarea {
+          width: 100%;
+          padding: 8px;
+          box-sizing: border-box;
+          margin-bottom: 10px;
+        }
+  
+        textarea {
+          height: 100px;
+        }
+  
+        input[type="file"] {
+          margin-bottom: 10px;
+        }
+      }
+  
+      img {
+        max-width: 100px;
+        max-height: 100px;
+        margin-right: 10px;
+      }
+  
+      input[type="submit"] {
+        background-color: #112830;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+        font-size: 14px;
+        &:hover {
+          background-color: #f0b31a;
+          color: #112830;
+        }
+      }
+    }
+  }
+  
   nav {
     margin: 0 10%;
   }

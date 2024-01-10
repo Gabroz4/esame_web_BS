@@ -1,5 +1,5 @@
 <template>
-  <div v-if="adminToken" class="nuovacamera"> <!--impedisce che un normale utente acceda alle funzion admin-->
+  <div v-if="adminToken" class="adminprofile"> <!--impedisce che un normale utente acceda alle funzion admin-->
     <h2>Crea una Nuova Stanza</h2>
     <form @submit.prevent="createRoom" enctype="multipart/form-data">
       <div>
