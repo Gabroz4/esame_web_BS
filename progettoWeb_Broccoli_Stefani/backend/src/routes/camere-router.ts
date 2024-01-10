@@ -5,7 +5,7 @@ import multer from 'multer';
 
 /*
 C:/Users/tomma/Desktop/Esame-Web/esame_web_BS/progetto_bs_2.0/backend/public/img
-C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progetto_bs_2.0/backend/public/img
+'C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progettoWeb_Broccoli_Stefani/backend/public/img'
 
 percorsi assoluti dei nostri pc
 */
@@ -16,7 +16,7 @@ const router: Router = Router()
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
      //percorso di destinazione delle imamgini
-      cb(null, 'C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progetto_bs_2.0/backend/public/img');
+      cb(null, 'C:/Users/gabri/Desktop/informatica/secondo_anno/ingegneria_dei_sistemi_web/esame_web_BS/progettoWeb_Broccoli_Stefani/backend/public/img');
     },
     filename: function (req, file, cb) {//assegna alle immagini il loro nome originale
       cb(null, file.originalname);

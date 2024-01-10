@@ -24,5 +24,5 @@ export interface Prenotazione {
     datainizio: Date;
     datafine: Date;
     giornitot: number;
-    prezzotot: number;
+    prezzo: number;
 }

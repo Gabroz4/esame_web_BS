@@ -1,5 +1,5 @@
 <template>
-  <div class="adminprofile">
+  <div class="profile">
     <h1>Profilo Utente</h1>
     <div class="profile-info">
       <p>Nome: {{ user.nome }}</p>
@@ -9,11 +9,11 @@
 
     <h2>Prenotazioni</h2>
     <div v-for="prenotazione in prenotazioni" :key="prenotazione.id" class="prenotazione">
-      <ul>
+      <ul class="prenotazione">
         <li>Id prenotazione: {{ prenotazione.id }}</li>
         <li>Camera: {{ prenotazione.nomecamera }}</li>
         <li>Periodo: {{ formatDates(prenotazione.datainizio) }} - {{ formatDates(prenotazione.datafine) }}</li>
-        <li>Totale: {{ prenotazione.prezzotot }}€</li>
+        <li>Totale: {{ prenotazione.prezzo }}€</li>
       </ul>
     </div>
     <button class="edit-btn" @click="logout">Logout</button>
