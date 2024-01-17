@@ -2,7 +2,6 @@ import { Router } from "express"
 import * as camereController from "../controllers/camere-controller"
 //libreria per la gestione del caricamento di file multipart/form-data
 import multer from 'multer';
-import path from "path";
 
 const router: Router = Router()
 
